@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -13,12 +13,12 @@ function Navbar() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="Button" to="/Board.jsx">
+            <NavLink className="Button" to="/board">
               게시판
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="Button" to="/">
+            <NavLink className="Button" to="/members">
               회원
             </NavLink>
           </li>
