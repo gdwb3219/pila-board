@@ -1,0 +1,23 @@
+.Board-title {
+  color: navy;
+  background-color: yellow;
+}
+
+.navbar {
+  background-color: blue;
+  padding: 5px;
+}
+
+.nav-list {
+  background-color: blueviolet;
+  padding: 5px;
+  list-style: none;
+  display: flex;
+  margin: 3px;
+}
+
+.nav-item {
+  background-color: orange;
+  padding: 2px;
+  margin: 2px;
+}
