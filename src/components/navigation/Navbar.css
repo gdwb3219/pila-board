@@ -1,0 +1,15 @@
+.navbar {
+  background-color: blue;
+  padding: 5px;
+}
+
+.nav-list {
+  background-color: blueviolet;
+  padding: 5px;
+  /* display: flex; */
+  text-decoration: none;
+}
+
+.nav-item {
+  background-color: red;
+}
