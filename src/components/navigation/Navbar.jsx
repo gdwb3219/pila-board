@@ -4,7 +4,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <>
-      <div>Hello Navbar!</div>
+      <h1 className='Board-title'>Pila-Board</h1>
       <nav className='navbar'>
         <ul className='nav-list'>
           nav-list
