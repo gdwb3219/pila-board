@@ -1,0 +1,12 @@
+.HeaderTitle {
+  color: blue;
+  border-color: black;
+  border: 1px solid;
+}
+
+.textTitle {
+  list-style: none;
+  border: 1px solid;
+  border-color: black;
+  height: 100px;
+}
