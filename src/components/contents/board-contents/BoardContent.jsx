@@ -1,4 +1,3 @@
-import { Link, NavLink } from "react-router-dom";
 import "./BoardContent.css";
 import Board from "./Board";
 
