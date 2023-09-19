@@ -18,6 +18,16 @@ function Navbar() {
               회원
             </NavLink>
           </li>
+          <li className='nav-item'>
+            <NavLink className='Button' to='/members'>
+              버튼1
+            </NavLink>
+          </li>
+          <li className='nav-item'>
+            <NavLink className='Button' to='/members'>
+              버튼2
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </>
