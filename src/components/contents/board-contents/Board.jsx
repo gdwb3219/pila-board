@@ -1,13 +1,23 @@
 import { Link, NavLink } from 'react-router-dom';
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import boardList from "../../../mockdata.json"
 import { Component } from "react";
 
 function Board() {
   return (
     <>
       <div>This is Board Component</div>
-            <div>
+        <div>
+            <ul>
+                {boardList.map((board) => (
+          // 4) map 함수로 데이터 출력
+                <li key={board.idx}>{board.title}</li>
+        ))}
+            </ul>
+            <Button variant="info">글쓰기</Button>
+        </div>
+            {/* <div>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -51,10 +61,7 @@ function Board() {
                 <Button variant="info">글쓰기</Button>
                 <Button variant="secondary">수정하기</Button>
                 <Button variant="danger">삭제하기</Button>
-            </div>
-      <Link className="Button" to="/">
-        Home
-      </Link>
+            </div> */}
     </>
   );
 }
