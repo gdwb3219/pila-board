@@ -4,32 +4,38 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <>
-      <h1 className='Board-title'>Pila-Board</h1>
-      <nav className='navbar'>
-        <ul className='nav-list'>
-          nav-list
-          <li className='nav-item'>
-            <NavLink className='Button' to='/'>
-              Home
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink className='Button' to='/members'>
-              회원
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink className='Button' to='/members'>
-              버튼1
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink className='Button' to='/members'>
-              버튼2
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+      <div className='header'>
+        <h2 className='Board-title'>Pila-Board</h2>
+        <h3 className='Board-title'>PilaBoard Corporation</h3>
+      </div>
+
+      <div className='wrapped'>
+        <nav className='navbar'>
+          <h1 className='nav-Logo'>Pila-Logo</h1>
+          <ul className='nav-list'>
+            <li className='nav-item'>
+              <NavLink className='Button' to='/'>
+                Home
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink className='Button' to='/members'>
+                회원
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink className='Button' to='/members'>
+                버튼1
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink className='Button' to='/members'>
+                버튼2
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

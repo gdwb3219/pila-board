@@ -2,3 +2,20 @@
   background-color: white;
   padding: 10px;
 }
+
+.article-list {
+  list-style: none;
+  text-decoration: none;
+}
+
+.article {
+  background-color: yellowgreen;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.link,
+.link:hover {
+  text-decoration: none;
+  color: inherit;
+}
