@@ -8,7 +8,7 @@ import "./Board.css";
 function Board() {
   return (
     <>
-      <div>
+      <div className='article-container'>
         <ul className='article-list'>
           {boardList.map((board) => (
             // 4) map 함수로 데이터 출력
@@ -16,6 +16,14 @@ function Board() {
               <Link className='link' to={`/board/${board.idx}`}>
                 {board.title}
               </Link>
+              <div className='sub-button'>
+                <a href='/' className='good-button'>
+                  좋아요
+                </a>
+                <a href='/' className='reply'>
+                  댓글
+                </a>
+              </div>
             </li>
           ))}
         </ul>
