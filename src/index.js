@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Members from "./components/contents/members/Members";
 import BoardContent from "./components/contents/board-contents/BoardContent";
 import BoardDetail from "./components/contents/board-contents/BoardDetail";
+import InputForm from "./components/contents/board-contents/InputForm"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,6 +16,7 @@ root.render(
         <Route path='board' element={<BoardContent />} />
         <Route path='members' element={<Members />} />
         <Route path='/board/:idx' element={<BoardDetail />} />
+        <Route path='/write' element={<InputForm />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
