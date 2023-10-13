@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import BoardCard from "./BoardCard";
 import { useParams } from "react-router-dom";
 import boardList from "../../../mockdata.json";
@@ -7,17 +7,17 @@ function BoardDetail() {
   const { idx } = useParams();
   const [loading, setLoading] = useState(false);
 
-  let result = boardList.filter( board => board.idx  === Number(idx) )[0];
-  console.log(result.contents)
-
+  const filtered_boardList = boardList.filter(
+    (content) => content.idx === Number(idx)
+  )[0];
   return (
     <>
       <BoardCard
-        idx={result.idx}
-        title={result.title}
-        contents={result.contents}
-        created_by={result.created_by}
-        timestamp={result.timestamp}
+        idx={filtered_boardList.idx}
+        title={filtered_boardList.title}
+        contents={filtered_boardList.contents}
+        created_by={filtered_boardList.created_by}
+        timestamp={filtered_boardList.timestamp}
       />
     </>
   );

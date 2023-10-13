@@ -3,5 +3,6 @@
   background-color: orange;
   height: 100vh;
   padding: 20px;
+  margin: 0 30px;
   flex-direction: column;
 }

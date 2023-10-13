@@ -1,11 +1,36 @@
+.header {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  background-color: #222;
+  color: white;
+}
+
+h3.Board-title {
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .Board-title {
-  color: navy;
-  background-color: yellow;
+  padding: 0 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.nav-Logo {
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
+  width: 100px;
+  padding: 24px 0;
 }
 
 .navbar {
   background-color: blue;
   padding: 5px;
+  display: flex;
+  height: 80px;
 }
 
 .nav-list {
@@ -20,4 +45,8 @@
   background-color: orange;
   padding: 2px;
   margin: 2px;
+  padding: 20px 0;
+  width: 60px;
+  text-align: center;
+  justify-content: center;
 }
