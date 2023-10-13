@@ -1,43 +1,71 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import boardList from "../../../mockdata.json";
 
-const INITIAL_VALUES = {
-  idx: 1,
-  title: "게시판 제목 1",
-  contents: "게시글 1 입니다.",
-  created_by: "작성자 1",
-  timestamp: "2023-09-09 18:07:12",
-};
+const InputForm = () => {
+  const navigate = useNavigate();
 
-function InputForm() {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues((prevValues) => ({
-      ...prevValues,
+  const [board, setBoard] = useState({
+    title: '',
+    createdBy: '',
+    contents: '',
+  });
+
+  const { title, createdBy, contents } = board; //비구조화 할당
+
+  const onChange = (event) => {
+    const { value, name } = event.target; //event.target에서 name과 value만 가져오기
+    setBoard({
+      ...board,
       [name]: value,
-    }));
+    });
   };
 
-  const [values, setValues] = useState(INITIAL_VALUES);
+  const saveBoard =  () => {
+    // idx, title, contents, created_by, timestamp
+    boardList.push(board)
+    alert('등록되었습니다.');
+    navigate('/');
+    };
+
+  const backToList = () => {
+    navigate('/');
+  };
+
   return (
-    <>
-      <input
-        name='title'
-        value={values.title}
-        placeholder='제목을 입력하세요'
-        onChange={handleChange}
-      >
-        제목
-      </input>
-      <input
-        name='content'
-        value={values.title}
-        placeholder='본문 내용을 입력하세요'
-        onChange={handleChange}
-      >
-        글 본문
-      </input>
-    </>
+    <div>
+      <div>
+        <span>제목</span>
+        <input type="text" name="title" value={title} onChange={onChange} />
+      </div>
+      <br />
+      <div>
+        <span>작성자</span>
+        <input
+          type="text"
+          name="createdBy"
+          value={createdBy}
+          onChange={onChange}
+        />
+      </div>
+      <br />
+      <div>
+        <span>내용</span>
+        <textarea
+          name="contents"
+          cols="30"
+          rows="10"
+          value={contents}
+          onChange={onChange}
+        ></textarea>
+      </div>
+      <br />
+      <div>
+        <button onClick={saveBoard}>저장</button>
+        <button onClick={backToList}>취소</button>
+      </div>
+    </div>
   );
-}
+};
 
 export default InputForm;
