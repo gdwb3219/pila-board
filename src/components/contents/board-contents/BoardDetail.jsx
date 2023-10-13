@@ -7,14 +7,17 @@ function BoardDetail() {
   const { idx } = useParams();
   const [loading, setLoading] = useState(false);
 
+  let result = boardList.filter( board => board.idx  === Number(idx) )[0];
+  console.log(result.contents)
+
   return (
     <>
       <BoardCard
-        idx={boardList[idx - 1].idx}
-        title={boardList[idx - 1].title}
-        contents={boardList[idx - 1].contents}
-        created_by={boardList[idx - 1].created_by}
-        timestamp={boardList[idx - 1].timestamp}
+        idx={result.idx}
+        title={result.title}
+        contents={result.contents}
+        created_by={result.created_by}
+        timestamp={result.timestamp}
       />
     </>
   );
