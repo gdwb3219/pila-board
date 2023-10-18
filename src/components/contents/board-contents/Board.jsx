@@ -1,12 +1,25 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import boardList from "../../../mockdata.json";
+// import mockBoardList from "../../../mockdata.json";
 import { Component } from "react";
 import "./Board.css";
+import { useState, useEffect } from "react";
 
 function Board() {
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    const storedBoardList = JSON.parse(localStorage.getItem("boardList"));
+    if (storedBoardList) {
+      setBoardList(storedBoardList);
+    }
+  }, []);
+
+
+  const [boardList, setBoardList] = useState(
+    JSON.parse(localStorage.getItem("boardList")) || []
+  );
 
   const moveToWrite = () => {
     navigate('/write');
