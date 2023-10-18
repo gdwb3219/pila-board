@@ -4,14 +4,26 @@
   flex-direction: column;
 }
 
+.comment-form {
+  display: flex;
+}
+
 .comment-form input {
   height: 50px;
+  width: 100vh;
+}
+
+.comment-form button {
+  width: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4;
 }
 
 .comment-container {
   background-color: #7f6000;
   display: flex;
-  height: 100px;
+  height: 50px;
 }
 
 .comment-container div {

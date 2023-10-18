@@ -5,11 +5,11 @@ import "./BoardCard.css";
 function BoardCard({ idx, title, contents, created_by, timestamp }) {
   return (
     <>
-      <h2>{title}</h2>
-      <h5>{created_by}</h5>
+      <h2 className='boardcard-title'>{title}</h2>
+      <h5 className='boardcard-created'>{created_by}</h5>
       <hr />
-      <p>{contents}</p>
-      <p>{timestamp}</p>
+      <p className='boardcard-content'>{contents}</p>
+      <p className='boardcard-timestamp'>{timestamp}</p>
     </>
   );
 }
