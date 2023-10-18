@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BoardCard from "./BoardCard";
 import { useParams } from "react-router-dom";
 import boardList from "../../../mockdata.json";
+import Reply from "./reply/Reply";
 
 function BoardDetail() {
   const { idx } = useParams();
@@ -20,6 +21,7 @@ function BoardDetail() {
         created_by={filtered_boardList.created_by}
         timestamp={filtered_boardList.timestamp}
       />
+      <Reply />
     </>
   );
 }

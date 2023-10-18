@@ -37,8 +37,11 @@
   padding-right: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .sub-button a {
   background-color: white;
+  display: flex;
+  flex-direction: row;
 }
