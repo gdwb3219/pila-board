@@ -5,11 +5,14 @@ import boardList from "../../../mockdata.json";
 import { Component } from "react";
 import "./Board.css";
 
+const stringList = JSON.stringify(boardList);
+window.localStorage.setItem("mockList", stringList);
+
 function Board() {
   const navigate = useNavigate();
 
   const moveToWrite = () => {
-    navigate('/write');
+    navigate("/write");
   };
 
   return (
