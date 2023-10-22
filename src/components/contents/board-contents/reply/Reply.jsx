@@ -1,21 +1,35 @@
+import CommentForm from "./CommentForm";
+import CommentList from "./CommentList";
 import "./Reply.css";
 
-function Reply() {
+// ----------------------------------------
+// 게시 글 아래 부분 댓글 기능 전체
+// 댓글 입력 Form
+// 댓글 리스트
+// ----------------------------------------
+
+const commentMockList = {
+  idx: 0,
+  list: [
+    {
+      userId: "gdwb3219",
+      content: "게시글 리스트 테스트1",
+      date: "2023-10-20",
+    },
+    {
+      userId: "gdwb321",
+      content: "게시글 리스트 테스트2",
+      date: "2023-10-19",
+    },
+  ],
+};
+
+function Reply({ idx }) {
   return (
     <>
-      <div className='add-comment-container'>
-        <div className='comment-status'>댓글 수</div>
-        <div className='comment-form'>
-          <input placeholder='입력란'></input>
-          <button type='submit'>등록</button>
-        </div>
-      </div>
-      <div className='comment-container'>
-        <div className='commented'>댓글1</div>
-        <div className='com-time'>댓글시간</div>
-        <div className='good'>좋아요</div>
-        <div className='add-comcomment'>대댓글</div>
-      </div>
+      <hr />
+      <CommentForm />
+      <CommentList idx={idx} list={commentMockList.list} />
     </>
   );
 }

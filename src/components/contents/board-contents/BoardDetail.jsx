@@ -7,14 +7,22 @@ import Navbar from "../../navigation/Navbar";
 import Footer from "../../footer/Footer";
 import "./BoardDetail.css";
 
+// ----------------------------------------
+// 게시판 글 목록 클릭해서 세부 게시글로 이동
+// 네비게이션 바
+// 글 내용
+// 댓글
+// Footer
+// ----------------------------------------
+
 function BoardDetail() {
   const { idx } = useParams();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const [boardList, setBoardList] = useState(
     JSON.parse(localStorage.getItem("boardList")) || []
   );
-  
+
   const filtered_boardList = boardList.filter(
     (content) => content.idx === Number(idx)
   )[0];
@@ -30,7 +38,7 @@ function BoardDetail() {
             created_by={filtered_boardList.created_by}
             timestamp={filtered_boardList.timestamp}
           />
-          <Reply />
+          <Reply idx={idx} />
         </div>
       </div>
 
