@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
+import Comment from './Comment';
 
 function CommentList({ idx, list }) {
-  console.log(idx.idx);
+  console.log(idx);
   return (
     <>
       <div>
         {list.map((v, k) => {
           return (
             <>
-              <div>{v.userId}</div>
-              <div>{v.content}</div>
-              <div>{v.date}</div>
+              <Comment v={v} k={k} />
             </>
           );
         })}
