@@ -1,7 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+const commentMockList = [
+  {
+    userId: 'gdwb3219',
+    content: '게시글 리스트 테스트1',
+    date: '2023-10-20',
+  },
+  {
+    userId: 'gdwb321',
+    content: '게시글 리스트 테스트2',
+    date: '2023-10-19',
+  },
+];
 
 function CommentForm() {
+  const [comContent, setComContent] = useState([]);
   const [replyData, setReplyData] = useState([]);
+  const [testState, setTestState] = useState(commentMockList);
 
   // 현재 시간 구하는 함수
   const time = () => {
@@ -19,15 +34,25 @@ function CommentForm() {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setReplyData(value);
+    setComContent(value);
   };
 
+  // Submit 클릭 시, 댓글이 하나 추가된다.
   const handleSubmit = (e) => {
     e.preventDefault();
+    const commentValue = {
+      userId: 'Guest',
+      content: comContent,
+      date: time(),
+    };
     // event data를 List에 추가하는 함수 필요
-    setReplyData(e.target.value);
-    console.log(replyData);
+    setReplyData([...replyData, commentValue]);
+    console.log(replyData, 123);
   };
+
+  useEffect(() => {
+    localStorage.setItem('commentMockList', JSON.stringify(commentMockList));
+  }, [replyData]);
 
   return (
     <>
