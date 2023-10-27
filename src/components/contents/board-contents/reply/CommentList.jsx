@@ -1,8 +1,8 @@
-import React from 'react';
-import Comment from './Comment';
+import React from "react";
+import Comment from "./Comment";
 
 function CommentList({ idx, list }) {
-  console.log(idx);
+  console.log("commentList Rerender?");
   return (
     <>
       <div>

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import "./Reply.css";
@@ -8,28 +9,21 @@ import "./Reply.css";
 // 댓글 리스트
 // ----------------------------------------
 
-const commentMockList = {
-  idx: 0,
-  list: [
-    {
-      userId: "gdwb3219",
-      content: "게시글 리스트 테스트1",
-      date: "2023-10-20",
-    },
-    {
-      userId: "gdwb321",
-      content: "게시글 리스트 테스트2",
-      date: "2023-10-19",
-    },
-  ],
-};
-
 function Reply({ idx }) {
+  const [commentList, setCommentList] = useState(
+    JSON.parse(localStorage.getItem("commentList")) || []
+  );
+
+  useEffect(() => {
+    console.log("Rerendering");
+  }, [commentList]);
   return (
     <>
       <hr />
-      <CommentForm />
-      <CommentList idx={idx} list={commentMockList.list} />
+      <div className='comment-container'>
+        <CommentForm />
+        <CommentList idx={idx} list={commentList} />
+      </div>
     </>
   );
 }
