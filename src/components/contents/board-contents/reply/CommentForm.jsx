@@ -15,6 +15,7 @@ const time = () => {
 };
 
 function CommentForm() {
+  console.log("Rerender CommentForm");
   // state 정의
   const [comment, setComment] = useState({
     comment_id: "",
@@ -39,6 +40,7 @@ function CommentForm() {
 
   useEffect(() => {
     localStorage.setItem("commentList", JSON.stringify(commentList));
+    JSON.parse(localStorage.getItem("commentList"));
   }, [commentList]);
 
   const handleChange = (e) => {
@@ -47,9 +49,11 @@ function CommentForm() {
   };
 
   // Submit 클릭 시, 댓글이 하나 추가된다.
-  const handleSubmit = () => {
-    setCommentList([...commentList, comment]);
+  const handleSubmit = async () => {
+    console.log(commentList);
+    await setCommentList([...commentList, comment]);
     // event data를 List에 추가하는 함수 필요
+    console.log(commentList);
   };
 
   return (

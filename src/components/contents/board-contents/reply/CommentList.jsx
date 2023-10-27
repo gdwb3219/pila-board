@@ -2,7 +2,7 @@ import React from "react";
 import Comment from "./Comment";
 
 function CommentList({ idx, list }) {
-  console.log("commentList Rerender?");
+  console.log("commentList 렌더링");
   return (
     <>
       <div>

@@ -10,12 +10,13 @@ import "./Reply.css";
 // ----------------------------------------
 
 function Reply({ idx }) {
+  console.log("Reply 렌더링");
   const [commentList, setCommentList] = useState(
     JSON.parse(localStorage.getItem("commentList")) || []
   );
 
   useEffect(() => {
-    console.log("Rerendering");
+    console.log("Reply 내부 useEffect 렌더링");
   }, [commentList]);
   return (
     <>
