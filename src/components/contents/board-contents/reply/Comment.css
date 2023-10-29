@@ -27,12 +27,21 @@
 }
 
 .add-on div {
-  padding-right: 20px;
+  padding: 0 10px 0 10px;
 }
 
 .like {
   background-color: #fff2cc;
-  border: 1px;
-  border-color: black;
-  font-size: 14px;
+}
+
+.like-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  background: red;
 }

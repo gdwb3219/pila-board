@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import Comment from "./Comment";
+import React, { useState } from 'react';
+import Comment from './Comment';
 
 function CommentList({ idx, list }) {
-  console.log("commentList 렌더링");
-
   const [items, setItems] = useState(list);
   const [visibleItems, setVisibleItems] = useState(5);
 
@@ -12,7 +10,10 @@ function CommentList({ idx, list }) {
   };
   return (
     <>
-      <div className='list-container'>
+      <div className="list-container">
+        {visibleItems < items.length && (
+          <button onClick={loadMore}>더 보기</button>
+        )}
         {list.slice(0, visibleItems).map((v, k) => {
           return (
             <>
@@ -21,9 +22,6 @@ function CommentList({ idx, list }) {
             </>
           );
         })}
-        {visibleItems < items.length && (
-          <button onClick={loadMore}>더 보기</button>
-        )}
       </div>
     </>
   );
