@@ -3,7 +3,6 @@ import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import "./Reply.css";
 import "./Comment.css";
-import "./CommentForm.css";
 
 // ----------------------------------------
 // 게시 글 아래 부분 댓글 기능 전체
