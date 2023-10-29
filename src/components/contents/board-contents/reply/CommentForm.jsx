@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from 'react';
 
 // 현재 시간 구하는 함수
 const time = () => {
@@ -15,65 +15,75 @@ const time = () => {
 };
 
 function CommentForm() {
-  console.log("Rerender CommentForm");
+  console.log('1. CommentForm 렌더링');
   // state 정의
+  // comment State : 댓글 1개의 포맷
   const [comment, setComment] = useState({
-    comment_id: "",
-    content: "",
+    comment_id: '',
+    content: '',
     timestamp: time(),
-    createdBy: "guest",
+    createdBy: 'guest',
     like: 0,
     dislike: 0,
     reply_list: [],
   });
 
+  // commentList State : 전체 댓글 리스트
   const [commentList, setCommentList] = useState([]);
 
+  // comment 비구조 할당
   const { comment_id, content, timestamp, createdBy, like, dislike } = comment;
 
   useEffect(() => {
-    const storedCommentList = JSON.parse(localStorage.getItem("commentList"));
+    const storedCommentList =
+      JSON.parse(localStorage.getItem('commentList')) || [];
     if (storedCommentList) {
       setCommentList(storedCommentList);
+      console.log('2. storedCommentList');
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("commentList", JSON.stringify(commentList));
-    JSON.parse(localStorage.getItem("commentList"));
+    localStorage.setItem('commentList', JSON.stringify(commentList));
+    JSON.parse(localStorage.getItem('commentList'));
+    console.log('3. localStorage수정 후 getItem');
   }, [commentList]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // const updateComment = { ...comment, [name]: value };
     setComment({ ...comment, [name]: value });
+    console.log('4. handleChange 렌더링');
   };
 
   // Submit 클릭 시, 댓글이 하나 추가된다.
-  const handleSubmit = async () => {
-    console.log(commentList);
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    console.log(content);
     await setCommentList([...commentList, comment]);
     // event data를 List에 추가하는 함수 필요
     console.log(commentList);
+    console.log(JSON.parse(localStorage.getItem('commentList')));
   };
 
   return (
     <>
-      <div className='comment_fo'>
-        <div className='txtara'>
+      <form className="comment_fo" onSubmit={handleSubmit}>
+        <div className="txtara">
           <textarea
-            name='content'
+            name="content"
             value={content}
-            placeholder='댓글을 입력해주세요'
+            placeholder="댓글을 입력해주세요"
             onChange={handleChange}
           ></textarea>
         </div>
-        <div className='fnc'>
-          <button className='btn' onClick={handleSubmit}>
+        <div className="fnc">
+          <button type="submit" className="btn">
             등록
           </button>
-          <button className='btn'>취소</button>
+          <button className="btn">취소</button>
         </div>
-      </div>
+      </form>
     </>
   );
 }
