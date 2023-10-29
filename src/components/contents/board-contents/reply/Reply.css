@@ -22,14 +22,8 @@
   border-radius: 4;
 }
 
-.comment-container {
+.reply-container {
   background-color: #7f6000;
   display: flex;
   flex-direction: column;
-  /* height: 50px; */
-  width: 80vh;
-}
-
-.comment-container div {
-  background-color: #bf9000;
 }

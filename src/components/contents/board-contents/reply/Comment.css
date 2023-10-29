@@ -1,0 +1,38 @@
+.comment-container {
+  background-color: #ffd966;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-content {
+  background-color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 0 10px 0;
+}
+
+.comment-user {
+  color: #37acc9;
+}
+
+.comment-date {
+  font-size: 12px;
+}
+
+.add-on {
+  background-color: #ffe699;
+  display: flex;
+  align-items: center;
+}
+
+.add-on div {
+  padding-right: 20px;
+}
+
+.like {
+  background-color: #fff2cc;
+  border: 1px;
+  border-color: black;
+  font-size: 14px;
+}
