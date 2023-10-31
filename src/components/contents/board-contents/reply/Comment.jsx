@@ -43,7 +43,7 @@ function Comment({ v, k }) {
           </div>
           <div className="like">
             <button className="like-button" onClick={handleDislike}>
-              👎 {v.dislike}
+              👎 {dislike}
             </button>
           </div>
         </div>
