@@ -9,7 +9,9 @@ import styled from 'styled-components'
 
 function Board() {
   const navigate = useNavigate();
+  // 기본 불러오기 페이지 번호 (기본 1)
   const [page, setPage] = useState(1)
+  // 게시판에 보이는 게시물 갯수 (기본 10)
   const [items, setItems] = useState(10);
 
   useEffect(() => {
@@ -85,7 +87,7 @@ function Board() {
   );
 }
 
-// PaginationBox 에 대한 Styled component
+// PaginationBox 에 대한 Styled component (Javascript 내에 CSS 넣는 기능)
 const PaginationBox = styled.div`
   .pagination { display: flex; justify-content: center; margin-top: 15px;}
   ul { list-style: none; padding: 0; }
