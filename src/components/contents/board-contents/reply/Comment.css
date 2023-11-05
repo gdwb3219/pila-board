@@ -32,6 +32,9 @@
 
 .like {
   background-color: #fff2cc;
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .like-button {
@@ -44,4 +47,10 @@
 
 .like-button:hover {
   background: red;
+}
+
+.reply-button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
