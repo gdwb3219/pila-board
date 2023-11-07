@@ -70,7 +70,6 @@ function CommentForm() {
   // Submit 클릭 시, 댓글이 하나 추가된다.
   const handleSubmit = async (e) => {
     // e.preventDefault();
-    console.log(content, e, "KEY");
     // if (e.key === "Enter") {
     //   await setCommentList([...commentList, comment]);
     // }
@@ -79,10 +78,12 @@ function CommentForm() {
     console.log(commentList);
     console.log(JSON.parse(localStorage.getItem("commentList")));
     alert("댓글이 등록되었습니다.");
+    setComment({ ...comment, content: "" });
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       handleSubmit(e);
     }
   };

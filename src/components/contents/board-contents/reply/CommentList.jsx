@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Comment from './Comment';
+import React, { useState } from "react";
+import Comment from "./Comment";
 
 function CommentList({ idx, list }) {
   const [items, setItems] = useState(list);
@@ -10,7 +10,7 @@ function CommentList({ idx, list }) {
   };
   return (
     <>
-      <div className="list-container">
+      <div className='list-container'>
         {visibleItems < items.length && (
           <button onClick={loadMore}>더 보기</button>
         )}
