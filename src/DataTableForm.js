@@ -1,38 +1,36 @@
 const 게시글 = {
-  idx: 0, // 게시글 id,
-  Num: 1, // 게시 글번호
-  title: 'TITLE', // 제목
-  user_id: '대원', // 작성자
-  content: '블라블라', // 내용
-  password: 'PASSWORD', // 비번
-  time: time(), // 작성 시각
-  like: 123, // 좋아요 수
-  dontLike: 123, // 싫어요 수
-  commentList: B, // 댓글 리스트
-  // 참고 항목
+  PostID: 0, // 게시글 id, (Primary Key, UUID 형식)
+  Title: "TITLE", // 제목
+  UserID: "대원", // 작성자
+  Body: "블라블라", // 내용
+  // Password: 'PASSWORD', // 비번
+  DateTimePosted: time(), // 작성 시각
+  Like: 123, // 좋아요 수
+  DisLike: 123, // 싫어요 수
+  CategoryID: "유우머", // 게시판 ID (ForeignID)
+  // ----------------------
+  // 참고 항목 -- 추후 개발
   voteData: data,
-  forward: [list],
-  hashtag: [list],
+  forward: [list], // 댓글/대댓글에 구현하는 게 좋을 듯
+  hashtag: [list], // json화 할 때 리스트로 구현
 };
 
 const 댓글 = {
-  댓글id: 'A',
-  내용: '하하',
-  시간: time(),
-  작성자: 'id',
-  좋아요: 123,
-  싫어요: 123,
-  댓글리스트: [대댓글id, 'B',...],  // 대댓글 목록  --- 대댓글과 대댓글이 없는 댓글은 어떻게 구분?
-  
+  CommentID: "A", // 댓글 ID, (Primary Key, UUID 형식)
+  Body: "하하",
+  DateTimePosted: time(),
+  UserID: "id",
+  Like: 123,
+  DisLike: 123,
+  PostID: "asdf-123", // 속해있는 게시글 ID (게시글DB의 Foreign Key)
 };
 
 const 대댓글 = {
-  댓글id: 'B',
-  내용: '하하222',
-  시간: time(),
-  작성자: 'id',
-  좋아요: 123,
-  싫어요: 123,
-  댓글리스트: [빈칸],
-}
-
+  CoCommentID: "B",
+  Body: "하하222",
+  DateTimePosted: time(),
+  UserID: "id",
+  Like: 123,
+  DisLike: 123,
+  CommentID: "A", // 속해있는 댓글 ID (댓글DB의 Foreign Key)
+};

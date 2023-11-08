@@ -79,6 +79,19 @@ function CommentForm() {
     console.log(JSON.parse(localStorage.getItem("commentList")));
     alert("댓글이 등록되었습니다.");
     setComment({ ...comment, content: "" });
+
+    // Server POST 요청 TEST
+    fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentList),
+    }) // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
+      .then((response) => response.json())
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("Error:", error));
+    console.log(posts);
   };
 
   const handleKeyPress = (e) => {

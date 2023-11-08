@@ -14,7 +14,7 @@ function CommentList({ idx, list }) {
         {visibleItems < items.length && (
           <button onClick={loadMore}>더 보기</button>
         )}
-        {list.slice(0, visibleItems).map((v, k) => {
+        {list.slice(items.length - visibleItems, items.length).map((v, k) => {
           return (
             <>
               <hr />
