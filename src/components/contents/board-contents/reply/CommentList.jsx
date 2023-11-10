@@ -4,9 +4,16 @@ import Comment from "./Comment";
 function CommentList({ idx, list }) {
   const [items, setItems] = useState(list);
   const [visibleItems, setVisibleItems] = useState(5);
+  console.log(visibleItems, "visibleItems");
 
   const loadMore = () => {
-    setVisibleItems((prev) => prev + 5);
+    // setVisibleItems((prev) => prev + 5);
+    setVisibleItems((prev) =>
+      items.length > prev + 5 ? prev + 5 : items.length
+    );
+    // setVisibleItems(items.length > visibleItems ? visibleItems : items.length);
+    // let minusIndex = items.length > visibleItems ? visibleItems : items.length;
+    // console.log(minusIndex, visibleItems, "빼기 몇?");
   };
   return (
     <>
