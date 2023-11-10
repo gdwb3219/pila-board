@@ -11,16 +11,18 @@ function CommentList({ idx, list }) {
     setVisibleItems((prev) =>
       items.length > prev + 5 ? prev + 5 : items.length
     );
-    // setVisibleItems(items.length > visibleItems ? visibleItems : items.length);
-    // let minusIndex = items.length > visibleItems ? visibleItems : items.length;
-    // console.log(minusIndex, visibleItems, "빼기 몇?");
   };
   return (
     <>
       <div className='list-container'>
-        {visibleItems < items.length && (
-          <button onClick={loadMore}>더 보기</button>
-        )}
+        <div className='button-container'>
+          {visibleItems < items.length && (
+            <button className='loadMore-button' onClick={loadMore}>
+              댓글 {items.length - visibleItems}개 더 보기
+            </button>
+          )}
+        </div>
+
         {list.slice(items.length - visibleItems, items.length).map((v, k) => {
           return (
             <>
