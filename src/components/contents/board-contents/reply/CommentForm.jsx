@@ -1,4 +1,5 @@
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./CommentForm.css";
 
 // 현재 시간 구하는 함수
@@ -20,7 +21,7 @@ function CommentForm() {
   // state 정의
   // comment State : 댓글 1개의 포맷
   const [comment, setComment] = useState({
-    comment_id: "",
+    comment_id: uuidv4(),
     content: "",
     timestamp: time(),
     createdBy: "guest",
@@ -68,12 +69,13 @@ function CommentForm() {
   };
 
   // Submit 클릭 시, 댓글이 하나 추가된다.
-  const handleSubmit = async (e) => {
+  const handleSubmit = () => {
     // e.preventDefault();
-    // if (e.key === "Enter") {
-    //   await setCommentList([...commentList, comment]);
-    // }
-    await setCommentList([...commentList, comment]);
+    // const idCreate = uuidv4();
+    // console.log(idCreate);
+    // setComment({ ...comment, comment_id: idCreate });
+    // console.log(comment, "uuidtest123");
+    setCommentList([...commentList, comment]);
     // event data를 List에 추가하는 함수 필요
     console.log(commentList);
     console.log(JSON.parse(localStorage.getItem("commentList")));
