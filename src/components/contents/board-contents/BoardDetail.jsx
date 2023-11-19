@@ -6,6 +6,7 @@ import Reply from "./reply/Reply";
 import Navbar from "../../navigation/Navbar";
 import Footer from "../../footer/Footer";
 import "./BoardDetail.css";
+import { CommentContextProvider } from "../../../context/CommentContext";
 
 // ----------------------------------------
 // 게시판 글 목록 클릭해서 세부 게시글로 이동
@@ -38,7 +39,9 @@ function BoardDetail() {
             created_by={filtered_boardList.created_by}
             timestamp={filtered_boardList.timestamp}
           />
-          <Reply idx={idx} />
+          <CommentContextProvider>
+            <Reply idx={idx} />
+          </CommentContextProvider>
         </div>
       </div>
 

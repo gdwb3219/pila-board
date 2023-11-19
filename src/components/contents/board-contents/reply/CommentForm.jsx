@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./CommentForm.css";
+import { useCommentContext } from "../../../../context/CommentContext";
 
 // 현재 시간 구하는 함수
 const time = () => {
@@ -17,13 +18,14 @@ const time = () => {
 };
 
 function CommentForm() {
-  // console.log("1. CommentForm 렌더링");
+  console.log("11111111111111. CommentForm 렌더링 시작");
   // state 정의
   // comment State : 댓글 1개의 포맷
+  // const [text, setText] = useState("");
   const [comment, setComment] = useState({
-    comment_id: uuidv4(),
+    comment_id: "",
     content: "",
-    timestamp: time(),
+    timestamp: "",
     createdBy: "guest",
     like: 0,
     dislike: 0,
@@ -31,69 +33,74 @@ function CommentForm() {
   });
 
   // commentList State : 전체 댓글 리스트
-  const [commentList, setCommentList] = useState([]);
-  const [posts, setPosts] = useState([]);
+  // const [tempCommentList, setTempCommentList] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const { commentContextState, setCommentContextState } = useCommentContext();
 
   // comment 비구조 할당
   const { comment_id, content, timestamp, createdBy, like, dislike } = comment;
 
+  // 최초 1회만 실행할 것들
   useEffect(() => {
-    const storedCommentList =
-      JSON.parse(localStorage.getItem("commentList")) || [];
-    if (storedCommentList) {
-      setCommentList(storedCommentList);
-      console.log("2. storedCommentList");
-    }
-  }, []);
+    console.log(
+      JSON.parse(localStorage.getItem("commentList")),
+      "CommentForm useEffect: Local DB에서 가져온 comment List"
+    );
+    console.log("CommentForm useEffect: comment State", content);
+  }, [comment]);
 
-  useEffect(() => {
-    fetch("/api/posts") // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
-      .catch((error) => console.error("Error:", error));
-    console.log(posts);
-  }, []);
-  console.log(posts, "DB 결과");
-
-  useEffect(() => {
-    localStorage.setItem("commentList", JSON.stringify(commentList));
-    JSON.parse(localStorage.getItem("commentList"));
-    console.log("3. localStorage수정 후 getItem");
-  }, [commentList]);
+  // 서버 테스트용
+  // useEffect(() => {
+  //   fetch("/api/posts") // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
+  //     .then((response) => response.json())
+  //     .then((data) => setPosts(data))
+  //     .catch((error) => console.error("Error:", error));
+  //   console.log(posts);
+  // }, []);
+  // console.log(posts, "DB 결과");
 
   const handleChange = (e) => {
+    // text area에 키보드를 타이핑 할 때 실행
     const { name, value } = e.target;
-    // const updateComment = { ...comment, [name]: value };
-    setComment({ ...comment, [name]: value });
-    console.log("4. handleChange 렌더링");
+    setComment((prevComment) => ({ ...prevComment, [name]: value }));
   };
 
   // Submit 클릭 시, 댓글이 하나 추가된다.
-  const handleSubmit = () => {
-    // e.preventDefault();
-    // const idCreate = uuidv4();
-    // console.log(idCreate);
-    // setComment({ ...comment, comment_id: idCreate });
-    // console.log(comment, "uuidtest123");
-    setCommentList([...commentList, comment]);
-    // event data를 List에 추가하는 함수 필요
-    console.log(commentList);
-    console.log(JSON.parse(localStorage.getItem("commentList")));
-    alert("댓글이 등록되었습니다.");
-    setComment({ ...comment, content: "" });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const createUUID2 = uuidv4();
+
+    // UUID와 시간 부여, *** state로 업데이트 하는게 아님 ***
+    const submitComment = {
+      ...comment,
+      comment_id: createUUID2,
+      timestamp: time(),
+    };
+
+    // setTempCommentList((prev) => [...prev, comment]);
+    setCommentContextState((prev) => [...prev, submitComment]);
+
+    // localStorage.setItem("commentList", JSON.stringify(commentContextState));
+    localStorage.setItem("commentList", JSON.stringify([comment]));
+    console.log(
+      "LocalStorage에 commentContextState Set 완료!!!!!!!!!!!!!!!!!!"
+    );
+
+    // alert("댓글이 등록되었습니다.");
+    setComment((prev) => ({ ...prev, content: "" }));
 
     // Server POST 요청 TEST
-    fetch("/api/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(commentList),
-    }) // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
-      .catch((error) => console.error("Error:", error));
-    console.log(posts);
+    // fetch("/api/posts", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(commentList),
+    // }) // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
+    //   .then((response) => response.json())
+    //   .then((data) => setPosts(data))
+    //   .catch((error) => console.error("Error:", error));
+    // console.log(posts);
   };
 
   const handleKeyPress = (e) => {
@@ -102,6 +109,8 @@ function CommentForm() {
       handleSubmit(e);
     }
   };
+
+  console.log("CommentForm 끝111111111111");
 
   return (
     <>

@@ -36,12 +36,12 @@ function Comment({ v, k }) {
     setReplyOpen(!replyOpen);
   };
 
-  useEffect(() => {
-    const storedCommentList = JSON.parse(localStorage.getItem("commentList"));
-    if (storedCommentList) {
-      // setData(storedCommentList);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedCommentList = JSON.parse(localStorage.getItem("commentList"));
+  //   if (storedCommentList) {
+  //     // setData(storedCommentList);
+  //   }
+  // }, []);
 
   return (
     <>

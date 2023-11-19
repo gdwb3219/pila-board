@@ -11,23 +11,12 @@ import "./Comment.css";
 // ----------------------------------------
 
 function Reply({ idx }) {
-  console.log("Reply 렌더링");
-  const [commentList, setCommentList] = useState(
-    JSON.parse(localStorage.getItem("commentList")) || []
-  );
-
-  useEffect(() => {
-    console.log("Reply 내부 useEffect 렌더링");
-    const storedCommentList =
-      JSON.parse(localStorage.getItem("commentList")) || [];
-  }, [commentList]);
-
   return (
     <>
       <hr />
       <div className='reply-container'>
         <CommentForm />
-        <CommentList idx={idx} list={commentList} />
+        <CommentList idx={idx} />
       </div>
     </>
   );
