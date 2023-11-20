@@ -57,6 +57,7 @@ function CommentForm({ idx }) {
   // }, []);
   // console.log(posts, "DB 결과");
 
+  // textArea에서 키보드 입력 시, comment state의 content 정보를 변경함
   const handleChange = (e) => {
     // text area에 키보드를 타이핑 할 때 실행
     const { name, value } = e.target;
@@ -68,7 +69,6 @@ function CommentForm({ idx }) {
     // e.preventDefault();
     const createUUID2 = uuidv4();
 
-    // UUID와 시간 부여, *** state로 업데이트 하는게 아님 ***
     const submitComment = {
       ...comment,
       comment_id: createUUID2,
@@ -97,18 +97,13 @@ function CommentForm({ idx }) {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(commentList),
-    // }) // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
-    //   .then((response) => response.json())
-    //   .then((data) => setPosts(data))
-    //   .catch((error) => console.error("Error:", error));
     // console.log(posts);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      console.log(e, "handleKeyPress");
       handleSubmit(e);
     }
   };
@@ -131,7 +126,9 @@ function CommentForm({ idx }) {
           <button type='submit' className='btn'>
             등록
           </button>
-          <button className='btn'>취소</button>
+          <button type='button' className='btn'>
+            취소
+          </button>
         </div>
       </form>
     </>
