@@ -17,11 +17,11 @@ const time = () => {
   return kr_curr;
 };
 
-function CommentForm() {
-  console.log("11111111111111. CommentForm 렌더링 시작");
+function CommentForm({ idx }) {
+  // console.log("11111111111111. CommentForm 렌더링 시작");
+
   // state 정의
   // comment State : 댓글 1개의 포맷
-  // const [text, setText] = useState("");
   const [comment, setComment] = useState({
     comment_id: "",
     content: "",
@@ -29,12 +29,10 @@ function CommentForm() {
     createdBy: "guest",
     like: 0,
     dislike: 0,
-    reply_list: [],
+    reply_list: [idx],
   });
 
-  // commentList State : 전체 댓글 리스트
-  // const [tempCommentList, setTempCommentList] = useState([]);
-  // const [posts, setPosts] = useState([]);
+  // commentList Context State : 전체 댓글 리스트
   const { commentContextState, setCommentContextState } = useCommentContext();
 
   // comment 비구조 할당
@@ -67,7 +65,7 @@ function CommentForm() {
 
   // Submit 클릭 시, 댓글이 하나 추가된다.
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const createUUID2 = uuidv4();
 
     // UUID와 시간 부여, *** state로 업데이트 하는게 아님 ***
@@ -77,11 +75,16 @@ function CommentForm() {
       timestamp: time(),
     };
 
+    // Local Storage에서 List 가져온 후, new Comment 추가
+    let temp_commentList =
+      JSON.parse(localStorage.getItem("commentList")) || [];
+    temp_commentList.push(submitComment);
+
     // setTempCommentList((prev) => [...prev, comment]);
     setCommentContextState((prev) => [...prev, submitComment]);
 
     // localStorage.setItem("commentList", JSON.stringify(commentContextState));
-    localStorage.setItem("commentList", JSON.stringify([comment]));
+    localStorage.setItem("commentList", JSON.stringify(temp_commentList));
     console.log(
       "LocalStorage에 commentContextState Set 완료!!!!!!!!!!!!!!!!!!"
     );

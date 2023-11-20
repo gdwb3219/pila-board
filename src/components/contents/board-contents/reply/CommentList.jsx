@@ -3,9 +3,12 @@ import Comment from "./Comment";
 import { useCommentContext } from "../../../../context/CommentContext";
 
 function CommentList({ idx }) {
-  console.log("22222222222222.CommentList 렌더링");
+  console.log("22222222222222.CommentList 렌더링", idx);
   // Local Storage Load 방식 변경, Comment List에서 로딩
-  const INITIALLIST = JSON.parse(localStorage.getItem("commentList")) || [];
+  const INITIALLIST =
+    JSON.parse(localStorage.getItem("commentList")).filter(
+      (comments) => comments.reply_list[0] === idx
+    ) || [];
   const [visibleItems, setVisibleItems] = useState(5);
 
   const { commentContextState, setCommentContextState } = useCommentContext();
