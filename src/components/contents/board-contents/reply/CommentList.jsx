@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from "react";
-import Comment from "./Comment";
-import { useCommentContext } from "../../../../context/CommentContext";
+import React, { useEffect, useState } from 'react';
+import Comment from './Comment';
+import { useCommentContext } from '../../../../context/CommentContext';
 
 function CommentList({ idx }) {
-  console.log("22222222222222.CommentList 렌더링", idx);
+  console.log('22222222222222.CommentList 렌더링', idx);
   // Local Storage Load 방식 변경, Comment List에서 로딩
+  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
+
   const INITIALLIST =
-    JSON.parse(localStorage.getItem("commentList")).filter(
-      (comments) => comments.reply_list[0] === idx
-    ) || [];
+    INITIAL_localDB.filter((comments) => comments.reply_list[0] === idx) || [];
   const [visibleItems, setVisibleItems] = useState(5);
 
   const { commentContextState, setCommentContextState } = useCommentContext();
 
   const [commentList, setCommentList] = useState(INITIALLIST);
 
-  console.log(commentContextState, "Context List");
-  console.log(commentList, "렌더링 될 commentList 배열");
+  console.log(INITIALLIST, 'Initial');
+  console.log(commentContextState, 'Context List');
+  console.log(commentList, '렌더링 될 commentList 배열');
 
   useEffect(() => {
     console.log(
-      "CommentList의 useEffect 실행, context는 CommentList로 변경!!!"
+      'CommentList의 useEffect 실행, context는 CommentList로 변경!!!'
     );
     setCommentContextState(commentList);
   }, []);
@@ -45,13 +46,13 @@ function CommentList({ idx }) {
     );
   };
 
-  console.log("CommentList 실행 끝 22222222222222222");
+  console.log('CommentList 실행 끝 22222222222222222');
   return (
     <>
-      <div className='list-container'>
-        <div className='button-container'>
+      <div className="list-container">
+        <div className="button-container">
           {visibleItems < commentList.length && (
-            <button className='loadMore-button' onClick={loadMore}>
+            <button className="loadMore-button" onClick={loadMore}>
               댓글 {commentList.length - visibleItems}개 더 보기
             </button>
           )}
