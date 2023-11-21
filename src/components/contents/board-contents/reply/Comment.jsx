@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 
-function Comment(element) {
-  console.log(element, 'KEY 검증');
-  const [key, setKey] = useState(element.comment_id);
-  const [like, setLike] = useState(element.like);
-  const [dislike, setDislike] = useState(element.dislike);
+function Comment({ v, k }) {
+  // comment 내부 Key Factor State 정의
+  // { --------------------
+  //   comment_id   :   uuid
+  //   content      :   내용
+  //   createBy     :   작성자
+  //   dislike      :   싫어요
+  //   like         :   좋아요
+  //   reply_list   :   댓글이 속한 게시글
+  //   timestamp    :   작성 시간
+  // } --------------------
+  const [key, setKey] = useState(v.comment_id);
+  const [like, setLike] = useState(v.like);
+  const [dislike, setDislike] = useState(v.dislike);
   const [replyCount, setReplyCount] = useState(0);
   const [replyOpen, setReplyOpen] = useState(false);
 
-  console.log('comment 렌더링', element.comment_id);
-
   // 좋아요 버튼 누른 경우
-  const handleLike = () => {
+  const handleLike = (e) => {
+    console.log(e);
     setLike((prev) => prev + 1);
     let newCommentList = JSON.parse(localStorage.getItem('commentList'));
-    newCommentList[key].like = like + 1;
+    newCommentList[0].like = like + 1;
     localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
@@ -34,21 +42,14 @@ function Comment(element) {
     setReplyOpen(!replyOpen);
   };
 
-  // useEffect(() => {
-  //   const storedCommentList = JSON.parse(localStorage.getItem("commentList"));
-  //   if (storedCommentList) {
-  //     // setData(storedCommentList);
-  //   }
-  // }, []);
-
   return (
     <>
       <div className="comment-container">
-        <div className="comment-content">{element.content}</div>
+        <div className="comment-content">{v.content}</div>
         <div>key: {key}</div>
         <div className="add-on">
-          <div className="comment-user">{element.createdBy}</div>
-          <div className="comment-date"> 🕒 {element.timestamp}</div>
+          <div className="comment-user">{v.createdBy}</div>
+          <div className="comment-date"> 🕒 {v.timestamp}</div>
           <div className="like">
             <button className="like-button" onClick={handleLike}>
               👍 {like}

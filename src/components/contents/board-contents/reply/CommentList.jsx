@@ -3,7 +3,7 @@ import Comment from './Comment';
 import { useCommentContext } from '../../../../context/CommentContext';
 
 function CommentList({ idx }) {
-  console.log('22222222222222.CommentList 렌더링', idx);
+  console.log('22222222222222.CommentList 렌더링, "idx":', idx);
   // Local Storage Load 방식 변경, Comment List에서 로딩
   const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
 
@@ -38,6 +38,13 @@ function CommentList({ idx }) {
   //     );
   //   }
   // }, []);
+
+  console.log(
+    commentList.slice(commentList.length - visibleItems, commentList.length),
+    'element 검증 중',
+    commentList.length - visibleItems,
+    commentList.length
+  );
 
   const loadMore = () => {
     // setVisibleItems((prev) => prev + 5);
