@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 const CommentContext = createContext();
 
 export function CommentContextProvider({ children }) {
-  const INITIALLIST = JSON.parse(localStorage.getItem("commentList")) || [];
+  const INITIALLIST = JSON.parse(localStorage.getItem('commentList')) || [];
   const [commentContextState, setCommentContextState] = useState(INITIALLIST);
+
+  const [showCommentForm, setShowCommentForm] = useState(true);
 
   // const updateCommentList = (newCommentList) => {
   //   setCommentContextState([...commentContextState, newCommentList]);
@@ -12,7 +14,12 @@ export function CommentContextProvider({ children }) {
 
   return (
     <CommentContext.Provider
-      value={{ commentContextState, setCommentContextState }}
+      value={{
+        commentContextState,
+        showCommentForm,
+        setCommentContextState,
+        setShowCommentForm,
+      }}
     >
       {children}
     </CommentContext.Provider>

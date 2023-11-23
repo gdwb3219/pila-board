@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import "./CommentForm.css";
-import { useCommentContext } from "../../../../context/CommentContext";
+import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import './CommentForm.css';
+import { useCommentContext } from '../../../../context/CommentContext';
 
 // 현재 시간 구하는 함수
 const time = () => {
@@ -23,17 +23,24 @@ function CommentForm({ idx }) {
   // state 정의
   // comment State : 댓글 1개의 포맷
   const [comment, setComment] = useState({
-    comment_id: "",
-    content: "",
-    timestamp: "",
-    createdBy: "guest",
+    comment_id: '',
+    content: '',
+    timestamp: '',
+    createdBy: 'guest',
     like: 0,
     dislike: 0,
     reply_list: [idx],
   });
 
+  const [showForm, setShowForm] = useState(true);
+
   // commentList Context State : 전체 댓글 리스트
-  const { commentContextState, setCommentContextState } = useCommentContext();
+  const {
+    commentContextState,
+    setCommentContextState,
+    showCommentForm,
+    setShowCommentForm,
+  } = useCommentContext();
 
   // comment 비구조 할당
   const { comment_id, content, timestamp, createdBy, like, dislike } = comment;
@@ -41,10 +48,10 @@ function CommentForm({ idx }) {
   // 최초 1회만 실행할 것들
   useEffect(() => {
     console.log(
-      JSON.parse(localStorage.getItem("commentList")),
-      "CommentForm useEffect: Local DB에서 가져온 comment List"
+      JSON.parse(localStorage.getItem('commentList')),
+      'CommentForm useEffect: Local DB에서 가져온 comment List'
     );
-    console.log("CommentForm useEffect: comment State", content);
+    console.log('CommentForm useEffect: comment State', content);
   }, [comment]);
 
   // 서버 테스트용
@@ -77,20 +84,20 @@ function CommentForm({ idx }) {
 
     // Local Storage에서 List 가져온 후, new Comment 추가
     let temp_commentList =
-      JSON.parse(localStorage.getItem("commentList")) || [];
+      JSON.parse(localStorage.getItem('commentList')) || [];
     temp_commentList.push(submitComment);
 
     // setTempCommentList((prev) => [...prev, comment]);
     setCommentContextState((prev) => [...prev, submitComment]);
 
     // localStorage.setItem("commentList", JSON.stringify(commentContextState));
-    localStorage.setItem("commentList", JSON.stringify(temp_commentList));
+    localStorage.setItem('commentList', JSON.stringify(temp_commentList));
     console.log(
-      "LocalStorage에 commentContextState Set 완료!!!!!!!!!!!!!!!!!!"
+      'LocalStorage에 commentContextState Set 완료!!!!!!!!!!!!!!!!!!'
     );
 
     // alert("댓글이 등록되었습니다.");
-    setComment((prev) => ({ ...prev, content: "" }));
+    setComment((prev) => ({ ...prev, content: '' }));
 
     // Server POST 요청 TEST
     // fetch("/api/posts", {
@@ -101,36 +108,38 @@ function CommentForm({ idx }) {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      console.log(e, "handleKeyPress");
+      console.log(e, 'handleKeyPress');
       handleSubmit(e);
     }
   };
 
-  console.log("CommentForm 끝111111111111");
+  console.log('CommentForm 끝111111111111');
 
   return (
     <>
-      <form className='comment_fo' onSubmit={handleSubmit}>
-        <div className='txtara'>
-          <textarea
-            name='content'
-            value={content}
-            placeholder='댓글을 입력해주세요'
-            onChange={handleChange}
-            onKeyDown={handleKeyPress}
-          ></textarea>
-        </div>
-        <div className='fnc'>
-          <button type='submit' className='btn'>
-            등록
-          </button>
-          <button type='button' className='btn'>
-            취소
-          </button>
-        </div>
-      </form>
+      {showCommentForm && (
+        <form className="comment_fo" onSubmit={handleSubmit}>
+          <div className="txtara">
+            <textarea
+              name="content"
+              value={content}
+              placeholder="댓글을 입력해주세요"
+              onChange={handleChange}
+              onKeyDown={handleKeyPress}
+            ></textarea>
+          </div>
+          <div className="fnc">
+            <button type="submit" className="btn">
+              등록
+            </button>
+            <button type="button" className="btn">
+              취소
+            </button>
+          </div>
+        </form>
+      )}
     </>
   );
 }

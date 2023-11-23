@@ -10,10 +10,14 @@ function CommentList({ idx }) {
   const INITIALLIST =
     INITIAL_localDB.filter((comments) => comments.reply_list[0] === idx) || [];
   const [visibleItems, setVisibleItems] = useState(5);
-
-  const { commentContextState, setCommentContextState } = useCommentContext();
-
   const [commentList, setCommentList] = useState(INITIALLIST);
+
+  const {
+    commentContextState,
+    setCommentContextState,
+    showCommentForm,
+    setShowCommentForm,
+  } = useCommentContext();
 
   console.log(INITIALLIST, 'Initial');
   console.log(commentContextState, 'Context List');
@@ -25,19 +29,6 @@ function CommentList({ idx }) {
     );
     setCommentContextState(commentList);
   }, []);
-  // console.log(setCommentContextState, "setter함수");
-
-  // useEffect(() => {
-  //   console.log("CommentList 에서 useEffect 실행", commentContextState);
-  //   const storedCommentList =
-  //     JSON.parse(localStorage.getItem("commentList")) || [];
-  //   if (storedCommentList) {
-  //     setCommentList(storedCommentList);
-  //     console.log(
-  //       "2. storedCommentList, 빈 CommentList에 localStorage 여부 파악해서 로딩 없으면 말고"
-  //     );
-  //   }
-  // }, []);
 
   console.log(
     commentList.slice(commentList.length - visibleItems, commentList.length),
@@ -47,11 +38,14 @@ function CommentList({ idx }) {
   );
 
   const loadMore = () => {
-    // setVisibleItems((prev) => prev + 5);
     setVisibleItems((prev) =>
       commentList.length > prev + 5 ? prev + 5 : commentList.length
     );
   };
+  const StartIndex =
+    commentList.length - visibleItems > 0
+      ? commentList.length - visibleItems
+      : 0;
 
   console.log('CommentList 실행 끝 22222222222222222');
   return (
@@ -65,16 +59,14 @@ function CommentList({ idx }) {
           )}
         </div>
 
-        {commentList
-          .slice(commentList.length - visibleItems, commentList.length)
-          .map((v, k) => {
-            return (
-              <>
-                <hr />
-                <Comment v={v} k={k} />
-              </>
-            );
-          })}
+        {commentList.slice(StartIndex, commentList.length).map((v, k) => {
+          return (
+            <>
+              <hr />
+              <Comment v={v} k={k} />
+            </>
+          );
+        })}
       </div>
     </>
   );

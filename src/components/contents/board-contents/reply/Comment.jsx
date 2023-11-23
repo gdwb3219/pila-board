@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
+import { useCommentContext } from '../../../../context/CommentContext';
 
 function Comment({ v, k }) {
   // comment 내부 Key Factor State 정의
@@ -17,6 +18,8 @@ function Comment({ v, k }) {
   const [dislike, setDislike] = useState(v.dislike);
   const [replyCount, setReplyCount] = useState(0);
   const [replyOpen, setReplyOpen] = useState(false);
+
+  const { showCommentForm, setShowCommentForm } = useCommentContext();
 
   // 좋아요 버튼 누른 경우
   const handleLike = (e) => {
@@ -39,7 +42,15 @@ function Comment({ v, k }) {
   const handleReply = () => {
     let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     // console.log(newCommentList[element.comment_id].reply_list.length);
-    setReplyOpen(!replyOpen);
+
+    console.log(v.comment_id, 'v.id');
+    setReplyOpen((prev) => !prev);
+    console.log('ReplyOpenReplyOpenReplyOpenReplyOpen', replyOpen);
+    setShowCommentForm(!showCommentForm);
+    console.log(
+      'showCommentFormshowCommentFormshowCommentForm',
+      showCommentForm
+    );
   };
 
   return (
@@ -57,11 +68,16 @@ function Comment({ v, k }) {
             <button className="like-button" onClick={handleDislike}>
               👎 {dislike}
             </button>
-            <button className="reply-button" onClick={handleReply}>
+            <button
+              className="reply-button"
+              id={v.comment_id}
+              onClick={handleReply}
+            >
               💬 {replyCount}
             </button>
           </div>
         </div>
+        {replyOpen && 'Hi'}
         {replyOpen && <CommentForm />}
       </div>
     </>
