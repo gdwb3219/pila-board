@@ -17,7 +17,7 @@ const time = () => {
   return kr_curr;
 };
 
-function CommentForm({ idx }) {
+function CommentForm({ idx, show }) {
   // console.log("11111111111111. CommentForm 렌더링 시작");
 
   // state 정의
@@ -119,7 +119,7 @@ function CommentForm({ idx }) {
 
   return (
     <>
-      {showCommentForm && (
+      {show && (
         <form className="comment_fo" onSubmit={handleSubmit}>
           <div className="txtara">
             <textarea

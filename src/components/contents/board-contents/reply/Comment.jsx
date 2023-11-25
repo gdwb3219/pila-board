@@ -21,11 +21,6 @@ function Comment({ v, k }) {
   const [replyOpen, setReplyOpen] = useState(false);
 
   const { showCommentForm, setShowCommentForm } = useCommentContext();
-  console.log('ReplyOpen  ReplyOpen  ReplyOpen  ReplyOpen', replyOpen);
-  console.log(
-    'showCommentForm  showCommentForm  showCommentForm',
-    showCommentForm
-  );
 
   // 좋아요 버튼 누른 경우
   const handleLike = (e) => {
@@ -46,16 +41,11 @@ function Comment({ v, k }) {
 
   // 댓글 버튼 누른 경우
   const handleReply = () => {
-    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
-    // console.log(newCommentList[element.comment_id].reply_list.length);
+    // let newCommentList = JSON.parse(localStorage.getItem('commentList'));
 
+    // 댓글 버튼 누르면 Reply Open True, 댓글 Comment Form False
     setReplyOpen((prev) => !prev);
-    console.log('ReplyOpen  ReplyOpen  ReplyOpen  ReplyOpen', replyOpen);
     setShowCommentForm(!showCommentForm);
-    console.log(
-      'showCommentForm  showCommentForm  showCommentForm',
-      showCommentForm
-    );
   };
 
   return (
@@ -82,9 +72,7 @@ function Comment({ v, k }) {
             </button>
           </div>
         </div>
-        {replyOpen && 'Hi'}
-        {replyOpen && <CommentForm />}
-        {/* <CommentForm /> */}
+        {!showCommentForm && <CommentForm show={replyOpen} />}
       </div>
     </>
   );
