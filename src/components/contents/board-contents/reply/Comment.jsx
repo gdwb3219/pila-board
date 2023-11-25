@@ -3,6 +3,7 @@ import CommentForm from './CommentForm';
 import { useCommentContext } from '../../../../context/CommentContext';
 
 function Comment({ v, k }) {
+  console.log('Comment Render!!!');
   // comment 내부 Key Factor State 정의
   // { --------------------
   //   comment_id   :   uuid
@@ -20,10 +21,15 @@ function Comment({ v, k }) {
   const [replyOpen, setReplyOpen] = useState(false);
 
   const { showCommentForm, setShowCommentForm } = useCommentContext();
+  console.log('ReplyOpen  ReplyOpen  ReplyOpen  ReplyOpen', replyOpen);
+  console.log(
+    'showCommentForm  showCommentForm  showCommentForm',
+    showCommentForm
+  );
 
   // 좋아요 버튼 누른 경우
   const handleLike = (e) => {
-    console.log(e);
+    // console.log(e);
     setLike((prev) => prev + 1);
     let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     newCommentList[0].like = like + 1;
@@ -43,12 +49,11 @@ function Comment({ v, k }) {
     let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     // console.log(newCommentList[element.comment_id].reply_list.length);
 
-    console.log(v.comment_id, 'v.id');
     setReplyOpen((prev) => !prev);
-    console.log('ReplyOpenReplyOpenReplyOpenReplyOpen', replyOpen);
+    console.log('ReplyOpen  ReplyOpen  ReplyOpen  ReplyOpen', replyOpen);
     setShowCommentForm(!showCommentForm);
     console.log(
-      'showCommentFormshowCommentFormshowCommentForm',
+      'showCommentForm  showCommentForm  showCommentForm',
       showCommentForm
     );
   };
@@ -79,6 +84,7 @@ function Comment({ v, k }) {
         </div>
         {replyOpen && 'Hi'}
         {replyOpen && <CommentForm />}
+        {/* <CommentForm /> */}
       </div>
     </>
   );

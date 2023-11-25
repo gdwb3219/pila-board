@@ -46,13 +46,13 @@ function CommentForm({ idx }) {
   const { comment_id, content, timestamp, createdBy, like, dislike } = comment;
 
   // 최초 1회만 실행할 것들
-  useEffect(() => {
-    console.log(
-      JSON.parse(localStorage.getItem('commentList')),
-      'CommentForm useEffect: Local DB에서 가져온 comment List'
-    );
-    console.log('CommentForm useEffect: comment State', content);
-  }, [comment]);
+  // useEffect(() => {
+  //   console.log(
+  //     JSON.parse(localStorage.getItem('commentList')),
+  //     'CommentForm useEffect: Local DB에서 가져온 comment List'
+  //   );
+  //   console.log('CommentForm useEffect: comment State', content);
+  // }, [comment]);
 
   // 서버 테스트용
   // useEffect(() => {
@@ -115,7 +115,7 @@ function CommentForm({ idx }) {
     }
   };
 
-  console.log('CommentForm 끝111111111111');
+  // console.log('CommentForm 끝111111111111');
 
   return (
     <>

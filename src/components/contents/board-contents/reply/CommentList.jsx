@@ -12,30 +12,30 @@ function CommentList({ idx }) {
   const [visibleItems, setVisibleItems] = useState(5);
   const [commentList, setCommentList] = useState(INITIALLIST);
 
-  const {
-    commentContextState,
-    setCommentContextState,
-    showCommentForm,
-    setShowCommentForm,
-  } = useCommentContext();
+  // const {
+  //   commentContextState,
+  //   setCommentContextState,
+  //   showCommentForm,
+  //   setShowCommentForm,
+  // } = useCommentContext();
 
-  console.log(INITIALLIST, 'Initial');
-  console.log(commentContextState, 'Context List');
-  console.log(commentList, '렌더링 될 commentList 배열');
+  // console.log(INITIALLIST, 'Initial');
+  // console.log(commentContextState, 'Context List');
+  // console.log(commentList, '렌더링 될 commentList 배열');
 
-  useEffect(() => {
-    console.log(
-      'CommentList의 useEffect 실행, context는 CommentList로 변경!!!'
-    );
-    setCommentContextState(commentList);
-  }, []);
+  // useEffect(() => {
+  //   console.log(
+  //     'CommentList의 useEffect 실행, context는 CommentList로 변경!!!'
+  //   );
+  //   setCommentContextState(commentList);
+  // }, []);
 
-  console.log(
-    commentList.slice(commentList.length - visibleItems, commentList.length),
-    'element 검증 중',
-    commentList.length - visibleItems,
-    commentList.length
-  );
+  // console.log(
+  //   commentList.slice(commentList.length - visibleItems, commentList.length),
+  //   'element 검증 중',
+  //   commentList.length - visibleItems,
+  //   commentList.length
+  // );
 
   const loadMore = () => {
     setVisibleItems((prev) =>

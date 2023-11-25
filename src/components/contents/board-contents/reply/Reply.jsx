@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import CommentForm from "./CommentForm";
-import CommentList from "./CommentList";
-import "./Reply.css";
-import "./Comment.css";
+import { useEffect, useState } from 'react';
+import CommentForm from './CommentForm';
+import CommentList from './CommentList';
+import './Reply.css';
+import './Comment.css';
 
 // ----------------------------------------
 // 게시 글 아래 부분 댓글 기능 전체
@@ -14,7 +14,7 @@ function Reply({ idx }) {
   return (
     <>
       <hr />
-      <div className='reply-container'>
+      <div className="reply-container">
         <CommentForm idx={idx} />
         <CommentList idx={idx} />
       </div>
