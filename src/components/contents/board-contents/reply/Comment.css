@@ -54,3 +54,19 @@
   background: none;
   cursor: pointer;
 }
+
+.replylist-container {
+  background-color: rgb(196, 196, 196);
+  margin: 5px 5px 5px 30px;
+}
+
+.reply-container {
+  background-color: rgb(196, 196, 196);
+}
+
+.replylike {
+  background-color: #fff2cc;
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+}
