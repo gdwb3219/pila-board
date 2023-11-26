@@ -1,5 +1,5 @@
 .comment-container {
-  background-color: #ffd966;
+  background-color: #f0f0f0;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
 }
 
 .add-on {
-  background-color: #ffe699;
+  background-color: #f0f0f0;
   display: flex;
   align-items: center;
 }
@@ -31,7 +31,7 @@
 }
 
 .like {
-  background-color: #fff2cc;
+  background-color: #f0f0f0;
   width: 120px;
   display: flex;
   justify-content: space-between;
@@ -65,7 +65,7 @@
 }
 
 .replylike {
-  background-color: #fff2cc;
+  background-color: #f0f0f0;
   width: 80px;
   display: flex;
   justify-content: space-between;

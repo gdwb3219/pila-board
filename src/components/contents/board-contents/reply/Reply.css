@@ -29,15 +29,17 @@
 }
 
 .CommentForm-container {
+  background-color: #f0f0f0;
   height: 96px;
 }
 
 .list-container {
   margin-bottom: 100px;
+  font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, sans-serif;
 }
 
 .button-container {
-  background-color: orange;
+  background-color: white;
   height: 70px;
   display: flex;
   align-items: center;
@@ -45,7 +47,12 @@
 }
 
 .loadMore-button {
-  width: 80%;
+  border: dashed 1px rgb(196, 196, 196);
+  width: 100%;
   height: 60px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  color: rgb(85, 85, 85);
 }

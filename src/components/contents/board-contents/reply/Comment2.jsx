@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import CommentForm from "./CommentForm";
-import { useCommentContext } from "../../../../context/CommentContext";
-import CommentList from "./CommentList";
-import CommentList2 from "./CommentList2";
+import React, { useEffect, useState } from 'react';
+import CommentForm from './CommentForm';
+import { useCommentContext } from '../../../../context/CommentContext';
+import CommentList from './CommentList';
+import CommentList2 from './CommentList2';
 
 function Comment2({ v, k }) {
-  console.log("Comment Render!!!");
+  console.log('Comment Render!!!');
   // comment 내부 Key Factor State 정의
   // { --------------------
   //   comment_id   :   uuid
@@ -17,7 +17,7 @@ function Comment2({ v, k }) {
   //   timestamp    :   작성 시간
   // } --------------------
 
-  const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
+  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
 
   // const INITIALLIST =
   //   INITIAL_localDB.filter(
@@ -32,41 +32,41 @@ function Comment2({ v, k }) {
 
   const { showCommentForm, setShowCommentForm } = useCommentContext();
 
-  console.log(showCommentForm, replyOpen, "댓글창, 댓글");
+  console.log(showCommentForm, replyOpen, '댓글창, 댓글');
 
   // 좋아요 버튼 누른 경우
   const handleLike = (e) => {
     // console.log(e);
     setLike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
+    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     // let newComment = newCommentList.filter(
     //   (comment) => comment.comment_id === v.comment_id
     // );
     // newComment.like = like + 1;
-    localStorage.setItem("commentList", JSON.stringify(newCommentList));
+    localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
   // 싫어요 버튼 누른 경우
   const handleDislike = () => {
     setDislike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
+    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     newCommentList[commentID].dislike = dislike + 1;
-    localStorage.setItem("commentList", JSON.stringify(newCommentList));
+    localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
   return (
     <>
-      <div className='reply-container'>
-        <div className='comment-content'>{v.content}</div>
+      <div className="reply-container">
+        <div className="comment-content">{v.content}</div>
         <div>key: {commentID}</div>
-        <div className='add-on'>
-          <div className='comment-user'>{v.createdBy}</div>
-          <div className='comment-date'> 🕒 {v.timestamp}</div>
-          <div className='replylike'>
-            <button className='like-button' onClick={handleLike}>
+        <div className="add-on">
+          <div className="comment-user">{v.createdBy}</div>
+          <div className="comment-date"> 🕒 {v.timestamp}</div>
+          <div className="replylike">
+            <button className="like-button" onClick={handleLike}>
               👍 {like}
             </button>
-            <button className='like-button' onClick={handleDislike}>
+            <button className="like-button" onClick={handleDislike}>
               👎 {dislike}
             </button>
           </div>
