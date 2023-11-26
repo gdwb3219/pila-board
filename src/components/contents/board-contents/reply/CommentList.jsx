@@ -12,31 +12,6 @@ function CommentList({ idx }) {
   const [visibleItems, setVisibleItems] = useState(5);
   const [commentList, setCommentList] = useState(INITIALLIST);
 
-  // const {
-  //   commentContextState,
-  //   setCommentContextState,
-  //   showCommentForm,
-  //   setShowCommentForm,
-  // } = useCommentContext();
-
-  // console.log(INITIALLIST, 'Initial');
-  // console.log(commentContextState, 'Context List');
-  // console.log(commentList, '렌더링 될 commentList 배열');
-
-  // useEffect(() => {
-  //   console.log(
-  //     'CommentList의 useEffect 실행, context는 CommentList로 변경!!!'
-  //   );
-  //   setCommentContextState(commentList);
-  // }, []);
-
-  // console.log(
-  //   commentList.slice(commentList.length - visibleItems, commentList.length),
-  //   'element 검증 중',
-  //   commentList.length - visibleItems,
-  //   commentList.length
-  // );
-
   const loadMore = () => {
     setVisibleItems((prev) =>
       commentList.length > prev + 5 ? prev + 5 : commentList.length
@@ -47,7 +22,9 @@ function CommentList({ idx }) {
       ? commentList.length - visibleItems
       : 0;
 
-  console.log('CommentList 실행 끝 22222222222222222');
+  console.log(
+    'CommentList 실행 끝 2222222222222222222222222222222222222222222222'
+  );
   return (
     <>
       <div className="list-container">

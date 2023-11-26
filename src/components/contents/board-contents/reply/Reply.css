@@ -28,6 +28,10 @@
   flex-direction: column;
 }
 
+.CommentForm-container {
+  height: 96px;
+}
+
 .list-container {
   margin-bottom: 100px;
 }

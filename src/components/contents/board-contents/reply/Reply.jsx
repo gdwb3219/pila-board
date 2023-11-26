@@ -18,7 +18,9 @@ function Reply({ idx }) {
     <>
       <hr />
       <div className="reply-container">
-        <CommentForm idx={idx} show={showCommentForm} />
+        <div className="CommentForm-container">
+          <CommentForm idx={idx} show={showCommentForm} />
+        </div>
         <CommentList idx={idx} />
       </div>
     </>

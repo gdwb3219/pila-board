@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import { useCommentContext } from '../../../../context/CommentContext';
+import CommentList from './CommentList';
+import CommentList2 from './CommentList2';
 
 function Comment({ v, k }) {
   console.log('Comment Render!!!');
@@ -21,6 +23,8 @@ function Comment({ v, k }) {
   const [replyOpen, setReplyOpen] = useState(false);
 
   const { showCommentForm, setShowCommentForm } = useCommentContext();
+
+  console.log(showCommentForm, replyOpen, '댓글창, 댓글');
 
   // 좋아요 버튼 누른 경우
   const handleLike = (e) => {
@@ -72,7 +76,8 @@ function Comment({ v, k }) {
             </button>
           </div>
         </div>
-        {!showCommentForm && <CommentForm show={replyOpen} />}
+        {!showCommentForm && <CommentForm idx={key} show={replyOpen} />}
+        {<CommentList2 idx={key} isSecond={false} />}
       </div>
     </>
   );

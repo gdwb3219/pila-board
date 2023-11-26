@@ -29,7 +29,7 @@ function CommentForm({ idx, show }) {
     createdBy: 'guest',
     like: 0,
     dislike: 0,
-    reply_list: [idx],
+    reply_list: [],
   });
 
   const [showForm, setShowForm] = useState(true);
@@ -80,6 +80,7 @@ function CommentForm({ idx, show }) {
       ...comment,
       comment_id: createUUID2,
       timestamp: time(),
+      reply_list: [idx],
     };
 
     // Local Storage에서 List 가져온 후, new Comment 추가
