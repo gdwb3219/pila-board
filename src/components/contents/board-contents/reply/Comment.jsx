@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import CommentForm from "./CommentForm";
-import { useCommentContext } from "../../../../context/CommentContext";
-import CommentList from "./CommentList";
-import CommentList2 from "./CommentList2";
+import React, { useEffect, useState } from 'react';
+import CommentForm from './CommentForm';
+import { useCommentContext } from '../../../../context/CommentContext';
+import CommentList from './CommentList';
+import CommentList2 from './CommentList2';
 
 function Comment({ v }) {
-  console.log("Comment Render!!!");
+  console.log('Comment Render!!!');
   // comment 내부 Key Factor State 정의
   // { --------------------
   //   comment_id   :   uuid
@@ -17,7 +17,7 @@ function Comment({ v }) {
   //   timestamp    :   작성 시간
   // } --------------------
 
-  const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
+  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
 
   const INITIALLIST =
     INITIAL_localDB.filter(
@@ -32,26 +32,26 @@ function Comment({ v }) {
 
   const { showCommentForm, setShowCommentForm } = useCommentContext();
 
-  console.log(showCommentForm, replyOpen, "댓글창, 댓글");
+  console.log(showCommentForm, replyOpen, '댓글창, 댓글');
 
   // 좋아요 버튼 누른 경우
   const handleLike = (e) => {
     // console.log(e);
     setLike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
+    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     // let newComment = newCommentList.filter(
     //   (comment) => comment.comment_id === v.comment_id
     // );
     // newComment.like = like + 1;
-    localStorage.setItem("commentList", JSON.stringify(newCommentList));
+    localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
   // 싫어요 버튼 누른 경우
   const handleDislike = () => {
     setDislike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
+    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     newCommentList[commentID].dislike = dislike + 1;
-    localStorage.setItem("commentList", JSON.stringify(newCommentList));
+    localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
   // 댓글 버튼 누른 경우
@@ -64,31 +64,32 @@ function Comment({ v }) {
   };
 
   // 대댓글 리스트 개수
-  console.log(INITIALLIST.length, "대댓글 갯수 확인");
+  console.log(INITIALLIST.length, '대댓글 갯수 확인');
 
   return (
     <>
-      <div className='comment-container'>
-        <div className='comment-content'>{v.content}</div>
-        <div>key: {v.comment_id}</div>
-        <div className='add-on'>
-          <div className='comment-user'>{v.createdBy}</div>
-          <div className='comment-date'> 🕒 {v.timestamp}</div>
-          <div className='like'>
-            <button className='like-button' onClick={handleLike}>
+      <div className="comment-container">
+        <div className="comment-content">{v.content}</div>
+        <div className="uuid">key: {v.comment_id}</div>
+        <div className="add-on">
+          <div className="comment-user">{v.createdBy}</div>
+          <div className="comment-date"> 🕒 {v.timestamp}</div>
+          <div className="like">
+            <button className="like-button" onClick={handleLike}>
               👍 {like}
             </button>
-            <button className='like-button' onClick={handleDislike}>
+            <button className="like-button" onClick={handleDislike}>
               👎 {dislike}
             </button>
             <button
-              className='reply-button'
+              className="reply-button"
               id={v.comment_id}
               onClick={handleReply}
             >
               💬 {INITIALLIST.length}
             </button>
           </div>
+          <button className="delete-button">삭제</button>
         </div>
         {!showCommentForm && (
           <CommentForm idx={v.comment_id} show={replyOpen} />

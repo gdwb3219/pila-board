@@ -52,19 +52,23 @@ function Comment2({ v, k }) {
 
   return (
     <>
-      <div className="reply-container">
-        <div className="comment-content">{v.content}</div>
-        <div>key: {commentID}</div>
-        <div className="add-on">
-          <div className="comment-user">{v.createdBy}</div>
-          <div className="comment-date"> 🕒 {v.timestamp}</div>
-          <div className="replylike">
-            <button className="like-button" onClick={handleLike}>
-              👍 {like}
-            </button>
-            <button className="like-button" onClick={handleDislike}>
-              👎 {dislike}
-            </button>
+      <div className="replybox-container">
+        <div>└</div>
+        <div className="reply-container">
+          <div className="comment-content">{v.content}</div>
+          <div className="uuid">key: {commentID}</div>
+          <div className="add-on">
+            <div className="comment-user">{v.createdBy}</div>
+            <div className="comment-date"> 🕒 {v.timestamp}</div>
+            <div className="replylike">
+              <button className="like-button" onClick={handleLike}>
+                👍 {like}
+              </button>
+              <button className="like-button" onClick={handleDislike}>
+                👎 {dislike}
+              </button>
+            </div>
+            <button className="delete-button">삭제</button>
           </div>
         </div>
       </div>
