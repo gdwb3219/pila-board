@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './CommentForm.css';
 import { useCommentContext } from '../../../../context/CommentContext';
@@ -32,15 +32,8 @@ function CommentForm({ idx, show }) {
     reply_list: [],
   });
 
-  const [showForm, setShowForm] = useState(true);
-
   // commentList Context State : 전체 댓글 리스트
-  const {
-    commentContextState,
-    setCommentContextState,
-    showCommentForm,
-    setShowCommentForm,
-  } = useCommentContext();
+  const { setCommentContextState } = useCommentContext();
 
   // comment 비구조 할당
   const { comment_id, content, timestamp, createdBy, like, dislike } = comment;

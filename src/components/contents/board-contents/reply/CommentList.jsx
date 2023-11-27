@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Comment from './Comment';
-import { useCommentContext } from '../../../../context/CommentContext';
 
 function CommentList({ idx }) {
   console.log('22222222222222.CommentList 렌더링, "idx":', idx);

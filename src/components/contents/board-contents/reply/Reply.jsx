@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import './Reply.css';
@@ -12,7 +11,7 @@ import { useCommentContext } from '../../../../context/CommentContext';
 // ----------------------------------------
 
 function Reply({ idx }) {
-  const { showCommentForm, setShowCommentForm } = useCommentContext();
+  const { showCommentForm } = useCommentContext();
 
   return (
     <>

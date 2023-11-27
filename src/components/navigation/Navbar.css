@@ -1,21 +1,18 @@
 .header {
   display: flex;
-  height: 40px;
+  height: 60px;
   justify-content: space-between;
   background-color: #222;
   color: white;
-}
-
-h3.Board-title {
-  font-size: 20px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .Board-title {
   padding: 0 20px;
   margin-top: auto;
   margin-bottom: auto;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e0e0e0;
 }
 .nav-Logo {
   background-color: white;

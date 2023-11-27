@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import CommentForm from './CommentForm';
+import React, { useState } from 'react';
 import { useCommentContext } from '../../../../context/CommentContext';
-import CommentList from './CommentList';
-import CommentList2 from './CommentList2';
 
 function Comment2({ v, k }) {
   console.log('Comment Render!!!');
   // comment 내부 Key Factor State 정의
-  // { --------------------
+  // { ----------------------------------------
   //   comment_id   :   uuid
   //   content      :   내용
   //   createBy     :   작성자
@@ -15,9 +12,9 @@ function Comment2({ v, k }) {
   //   like         :   좋아요
   //   reply_list   :   댓글이 속한 게시글
   //   timestamp    :   작성 시간
-  // } --------------------
+  // } ----------------------------------------
 
-  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
+  // const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
 
   // const INITIALLIST =
   //   INITIAL_localDB.filter(
@@ -27,15 +24,14 @@ function Comment2({ v, k }) {
   const [commentID, setCommentID] = useState(v.comment_id);
   const [like, setLike] = useState(v.like);
   const [dislike, setDislike] = useState(v.dislike);
-  const [replyCount, setReplyCount] = useState(0);
   const [replyOpen, setReplyOpen] = useState(false);
 
-  const { showCommentForm, setShowCommentForm } = useCommentContext();
+  const { showCommentForm } = useCommentContext();
 
   console.log(showCommentForm, replyOpen, '댓글창, 댓글');
 
   // 좋아요 버튼 누른 경우
-  const handleLike = (e) => {
+  const handleLike = () => {
     // console.log(e);
     setLike((prev) => prev + 1);
     let newCommentList = JSON.parse(localStorage.getItem('commentList'));
