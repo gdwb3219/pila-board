@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import CommentForm from "./CommentForm";
-import { useCommentContext } from "../../../../context/CommentContext";
-import CommentList2 from "./CommentList2";
+import React, { useState } from 'react';
+import CommentForm from './CommentForm';
+import { useCommentContext } from '../../../../context/CommentContext';
+import CommentList2 from './CommentList2';
+import DeleteButton from './DeleteButton';
 
 function Comment({ v }) {
-  console.log("Comment Render!!!");
+  console.log('Comment Render!!!');
   // comment 내부 Key Factor State 정의
   // { --------------------
   //   comment_id   :   uuid
@@ -17,7 +18,7 @@ function Comment({ v }) {
   // } --------------------
 
   // 초기 댓글 DB 데이터 로드
-  const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
+  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
   const INITIALLIST =
     INITIAL_localDB.filter(
       (comments) => comments.reply_list[0] === v.comment_id
@@ -33,16 +34,16 @@ function Comment({ v }) {
   const handleLike = (e) => {
     // console.log(e);
     setLike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
-    localStorage.setItem("commentList", JSON.stringify(newCommentList));
+    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
+    localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
   // 싫어요 버튼 누른 경우
   const handleDislike = () => {
     setDislike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
+    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
     newCommentList[commentID].dislike = dislike + 1;
-    localStorage.setItem("commentList", JSON.stringify(newCommentList));
+    localStorage.setItem('commentList', JSON.stringify(newCommentList));
   };
 
   // 댓글 버튼 누른 경우
@@ -61,6 +62,15 @@ function Comment({ v }) {
     }
   };
 
+  // 삭제 버튼 누르는 경우
+  const handleDelete = () => {
+    let delete_commentList = JSON.parse(localStorage.getItem('commentList'));
+    const deleted_commentList = delete_commentList.filter(
+      (comment) => comment.comment_id !== commentID
+    );
+    localStorage.setItem('commentList', JSON.stringify(deleted_commentList));
+  };
+
   const showBoolean = isOpen === true && openKey === commentID;
 
   // 대댓글 리스트 개수
@@ -68,30 +78,33 @@ function Comment({ v }) {
 
   return (
     <>
-      <div className='comment-container'>
-        <div className='comment-content'>{v.content}</div>
-        <div className='uuid'>key: {v.comment_id}</div>
-        <div className='add-on'>
-          <div className='comment-user'>{v.createdBy}</div>
-          <div className='comment-date'> 🕒 {v.timestamp}</div>
-          <div className='like'>
-            <button className='like-button' onClick={handleLike}>
+      <div className="comment-container">
+        <div className="comment-content">{v.content}</div>
+        <div className="uuid">key: {v.comment_id}</div>
+        <div className="add-on">
+          <div className="comment-user">{v.createdBy}</div>
+          <div className="comment-date"> 🕒 {v.timestamp}</div>
+          <div className="like">
+            <button className="like-button" onClick={handleLike}>
               👍 {like}
             </button>
-            <button className='like-button' onClick={handleDislike}>
+            <button className="like-button" onClick={handleDislike}>
               👎 {dislike}
             </button>
             <button
-              className='reply-button'
+              className="reply-button"
               id={v.comment_id}
               onClick={handleReply}
             >
               💬 {INITIALLIST.length}
             </button>
           </div>
-          <button className='delete-button'>삭제</button>
+          {/* <button className="delete-button" onClick={handleDelete}>
+            삭제
+          </button> */}
+          <DeleteButton k={commentID} />
         </div>
-        <div id='replyform-container'>
+        <div id="replyform-container">
           <CommentForm idx={v.comment_id} show={showBoolean} />
         </div>
 
