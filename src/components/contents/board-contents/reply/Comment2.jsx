@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useCommentContext } from '../../../../context/CommentContext';
+import React, { useState } from "react";
+import { useCommentContext } from "../../../../context/CommentContext";
 
 function Comment2({ v, k }) {
-  console.log('Comment Render!!!');
+  console.log("Comment222 Render!!!");
   // comment 내부 Key Factor State 정의
   // { ----------------------------------------
   //   comment_id   :   uuid
@@ -28,47 +28,47 @@ function Comment2({ v, k }) {
 
   const { showCommentForm } = useCommentContext();
 
-  console.log(showCommentForm, replyOpen, '댓글창, 댓글');
+  // console.log(showCommentForm, replyOpen, '댓글창, 댓글');
 
   // 좋아요 버튼 누른 경우
   const handleLike = () => {
     // console.log(e);
     setLike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
+    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
     // let newComment = newCommentList.filter(
     //   (comment) => comment.comment_id === v.comment_id
     // );
     // newComment.like = like + 1;
-    localStorage.setItem('commentList', JSON.stringify(newCommentList));
+    localStorage.setItem("commentList", JSON.stringify(newCommentList));
   };
 
   // 싫어요 버튼 누른 경우
   const handleDislike = () => {
     setDislike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
+    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
     newCommentList[commentID].dislike = dislike + 1;
-    localStorage.setItem('commentList', JSON.stringify(newCommentList));
+    localStorage.setItem("commentList", JSON.stringify(newCommentList));
   };
 
   return (
     <>
-      <div className="replybox-container">
+      <div className='replybox-container'>
         <div>└</div>
-        <div className="reply-container">
-          <div className="comment-content">{v.content}</div>
-          <div className="uuid">key: {commentID}</div>
-          <div className="add-on">
-            <div className="comment-user">{v.createdBy}</div>
-            <div className="comment-date"> 🕒 {v.timestamp}</div>
-            <div className="replylike">
-              <button className="like-button" onClick={handleLike}>
+        <div className='reply-container'>
+          <div className='comment-content'>{v.content}</div>
+          <div className='uuid'>key: {commentID}</div>
+          <div className='add-on'>
+            <div className='comment-user'>{v.createdBy}</div>
+            <div className='comment-date'> 🕒 {v.timestamp}</div>
+            <div className='replylike'>
+              <button className='like-button' onClick={handleLike}>
                 👍 {like}
               </button>
-              <button className="like-button" onClick={handleDislike}>
+              <button className='like-button' onClick={handleDislike}>
                 👎 {dislike}
               </button>
             </div>
-            <button className="delete-button">삭제</button>
+            <button className='delete-button'>삭제</button>
           </div>
         </div>
       </div>

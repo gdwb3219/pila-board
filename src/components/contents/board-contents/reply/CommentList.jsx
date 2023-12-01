@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Comment from './Comment';
+import React, { useState } from "react";
+import Comment from "./Comment";
 
 function CommentList({ idx }) {
-  console.log('22222222222222.CommentList 렌더링, "idx":', idx);
+  // console.log('22222222222222.CommentList 렌더링, "idx":', idx);
   // Local Storage Load 방식 변경, Comment List에서 로딩
-  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
+  const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
 
   const INITIALLIST =
     INITIAL_localDB.filter((comments) => comments.reply_list[0] === idx) || [];
@@ -21,15 +21,16 @@ function CommentList({ idx }) {
       ? commentList.length - visibleItems
       : 0;
 
-  console.log(
-    'CommentList 실행 끝 2222222222222222222222222222222222222222222222'
-  );
+  // console.log(
+  //   "CommentList 실행 끝 2222222222222222222222222222222222222222222222"
+  // );
+
   return (
     <>
-      <div className="list-container">
+      <div className='list-container'>
         {visibleItems < commentList.length && (
-          <button className="loadMore-button" onClick={loadMore}>
-            댓글 {commentList.length - visibleItems}개 더 보기
+          <button className='loadMore-button' onClick={loadMore}>
+            이전 댓글 {commentList.length - visibleItems}개 더 보기
           </button>
         )}
 
