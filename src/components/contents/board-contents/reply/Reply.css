@@ -35,7 +35,7 @@
 
 .list-container {
   margin-bottom: 100px;
-  font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, sans-serif;
+  font-family: "Roboto", "Noto Sans KR", AppleSDGothicNeo-Regular, sans-serif;
 }
 
 .button-container {
@@ -52,7 +52,19 @@
   height: 60px;
   font-size: 16px;
   font-weight: bold;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   color: rgb(85, 85, 85);
+}
+
+.loadMore-button:hover {
+  background-color: rgb(177, 108, 226);
+  border: dashed 1px rgb(196, 196, 196);
+  width: 100%;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: rgb(255, 255, 255);
 }

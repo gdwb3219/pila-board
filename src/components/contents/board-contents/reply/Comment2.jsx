@@ -50,6 +50,14 @@ function Comment2({ v, k }) {
     localStorage.setItem("commentList", JSON.stringify(newCommentList));
   };
 
+  const handleDelete = () => {
+    let delete_commentList = JSON.parse(localStorage.getItem("commentList"));
+    // let delete_commentList.filter((reply) => reply.comment_id === k)
+    // localStorage.setItem("commentList", JSON.stringify(temp_commentList));
+    console.log(delete_commentList, "지울 데이터리스트");
+  };
+
+  console.log("지울 데이터리스트");
   return (
     <>
       <div className='replybox-container'>
@@ -68,7 +76,9 @@ function Comment2({ v, k }) {
                 👎 {dislike}
               </button>
             </div>
-            <button className='delete-button'>삭제</button>
+            <button className='delete-button' onClick={handleDelete}>
+              삭제
+            </button>
           </div>
         </div>
       </div>
