@@ -50,3 +50,25 @@ h3.Board-title {
   text-align: center;
   justify-content: center;
 }
+
+.mem-box {
+  display: flex;
+  margin-left: auto;
+}
+.mem-list {
+  background-color: blueviolet;
+  padding: 5px;
+  list-style: none;
+  display: flex;
+  margin: 3px;
+}
+
+.mem-item {
+  background-color: orange;
+  padding: 2px;
+  margin: 2px;
+  padding: 20px 0;
+  width: 60px;
+  text-align: center;
+  justify-content: center;
+}

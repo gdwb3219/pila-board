@@ -3,8 +3,6 @@ import BoardCard from "./BoardCard";
 import { useParams } from "react-router-dom";
 // import boardList from "../../../mockdata.json";
 import Reply from "./reply/Reply";
-import Navbar from "../../navigation/Navbar";
-import Footer from "../../footer/Footer";
 import "./BoardDetail.css";
 
 // ----------------------------------------
@@ -28,7 +26,6 @@ function BoardDetail() {
   )[0];
   return (
     <>
-      <Navbar />
       <div className='wrapped'>
         <div className='contents'>
           <BoardCard
@@ -41,8 +38,6 @@ function BoardDetail() {
           <Reply idx={idx} />
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

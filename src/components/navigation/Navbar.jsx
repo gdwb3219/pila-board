@@ -34,6 +34,20 @@ function Navbar() {
               </NavLink>
             </li>
           </ul>
+          <div className="mem-box">
+          <ul className='mem-list'>
+          <li className='mem-item'>
+              <NavLink className='Button' to='/signup'>
+                회원가입
+              </NavLink>
+            </li>
+            <li className='mem-item'>
+              <NavLink className='Button' to='/members'>
+                로그인
+              </NavLink>
+            </li>
+          </ul>
+          </div>
         </nav>
       </div>
     </>
