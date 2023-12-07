@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { useCommentContext } from '../../../../context/CommentContext';
-import DeleteButton from './DeleteButton';
+import React, { useState } from "react";
+import { useCommentContext } from "../../../../context/CommentContext";
 
 function Comment2({ v, k }) {
-  console.log('Comment222 Render!!!');
+  console.log("Comment222 Render!!!");
   // comment 내부 Key Factor State 정의
   // { ----------------------------------------
   //   comment_id   :   uuid
@@ -35,54 +34,51 @@ function Comment2({ v, k }) {
   const handleLike = () => {
     // console.log(e);
     setLike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
+    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
     // let newComment = newCommentList.filter(
     //   (comment) => comment.comment_id === v.comment_id
     // );
     // newComment.like = like + 1;
-    localStorage.setItem('commentList', JSON.stringify(newCommentList));
+    localStorage.setItem("commentList", JSON.stringify(newCommentList));
   };
 
   // 싫어요 버튼 누른 경우
   const handleDislike = () => {
     setDislike((prev) => prev + 1);
-    let newCommentList = JSON.parse(localStorage.getItem('commentList'));
+    let newCommentList = JSON.parse(localStorage.getItem("commentList"));
     newCommentList[commentID].dislike = dislike + 1;
-    localStorage.setItem('commentList', JSON.stringify(newCommentList));
+    localStorage.setItem("commentList", JSON.stringify(newCommentList));
   };
 
-  // 삭제 버튼 누르는 경우
   const handleDelete = () => {
-    let delete_commentList = JSON.parse(localStorage.getItem('commentList'));
-    const deleted_commentList = delete_commentList.filter(
-      (reply) => reply.comment_id !== commentID
-    );
-    localStorage.setItem('commentList', JSON.stringify(deleted_commentList));
+    let delete_commentList = JSON.parse(localStorage.getItem("commentList"));
+    // let delete_commentList.filter((reply) => reply.comment_id === k)
+    // localStorage.setItem("commentList", JSON.stringify(temp_commentList));
+    console.log(delete_commentList, "지울 데이터리스트");
   };
 
-  console.log('지울 데이터리스트');
+  console.log("지울 데이터리스트");
   return (
     <>
-      <div className="replybox-container">
+      <div className='replybox-container'>
         <div>└</div>
-        <div className="reply-container">
-          <div className="comment-content">{v.content}</div>
-          <div className="uuid">key: {commentID}</div>
-          <div className="add-on">
-            <div className="comment-user">{v.createdBy}</div>
-            <div className="comment-date"> 🕒 {v.timestamp}</div>
-            <div className="replylike">
-              <button className="like-button" onClick={handleLike}>
+        <div className='reply-container'>
+          <div className='comment-content'>{v.content}</div>
+          <div className='uuid'>key: {commentID}</div>
+          <div className='add-on'>
+            <div className='comment-user'>{v.createdBy}</div>
+            <div className='comment-date'> 🕒 {v.timestamp}</div>
+            <div className='replylike'>
+              <button className='like-button' onClick={handleLike}>
                 👍 {like}
               </button>
-              <button className="like-button" onClick={handleDislike}>
+              <button className='like-button' onClick={handleDislike}>
                 👎 {dislike}
               </button>
             </div>
-            {/* <button className="delete-button" onClick={handleDelete}>
+            <button className='delete-button' onClick={handleDelete}>
               삭제
-            </button> */}
-            <DeleteButton k={commentID} />
+            </button>
           </div>
         </div>
       </div>
