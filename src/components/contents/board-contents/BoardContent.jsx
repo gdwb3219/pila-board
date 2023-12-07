@@ -1,5 +1,6 @@
 import "./BoardContent.css";
 import Board from "./Board";
+import { useState } from "react";
 
 function BoardContent() {
   return (
