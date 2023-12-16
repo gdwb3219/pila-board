@@ -53,3 +53,158 @@
   color: #2c2c2c;
   font-size: 15px;
 }
+
+#form-background {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 70%;
+  transition: all 0.5s linear;
+}
+
+#form-container {
+  width: 700px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#create-header {
+  display: flex;
+  justify-items: flex-start;
+}
+
+#create-header p {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #4c4c4c;
+}
+
+.X-button {
+  height: 30px;
+  width: 30px;
+  border: none;
+  position: absolute;
+  right: 0;
+  margin-left: auto;
+}
+
+.X-button:before,
+.X-button:after {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  content: '';
+  height: 30px;
+  width: 2px;
+  background-color: rgb(66, 66, 66);
+}
+
+.X-button:before {
+  transform: rotate(45deg);
+}
+
+.X-button:after {
+  transform: rotate(-45deg);
+}
+
+.X-button:hover {
+  background-color: orange;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.ta {
+  background-color: #fff;
+  border: 0;
+  border-bottom: solid 1px #c3c8cc;
+  width: 95%;
+  outline: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: #4c4c4c;
+  padding: 5px;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.title.ta {
+  height: 60px;
+}
+
+.createdBy.ta {
+  font-size: 18px;
+}
+
+.title.ta::placeholder {
+  color: #b1b1b1;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.createdBy.ta::placeholder {
+  color: #b1b1b1;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.contents.ta::placeholder {
+  color: #b1b1b1;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.title {
+  margin: 5px;
+}
+
+.createdBy {
+  margin: 5px;
+}
+
+.contents {
+  margin: 5px;
+}
+
+.contents.ta {
+  height: 150px;
+  font-size: 24px;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.button-form {
+  border: 0;
+  height: 40px;
+  width: 70px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #4c4c4c;
+  font-family: 'Nanum Gothic', sans-serif;
+  margin-left: auto;
+}
+
+.button-form:hover {
+  background-color: orange;
+}
+
+#save-container {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-start;
+  bottom: 0;
+}

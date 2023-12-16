@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import "./Board.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Pagination from "react-js-pagination";
-import styled from "styled-components";
+import { Link, useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import './Board.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Pagination from 'react-js-pagination';
+import styled from 'styled-components';
+import InputForm from './InputForm';
 
 function Board() {
   const navigate = useNavigate();
@@ -12,9 +13,10 @@ function Board() {
   const [page, setPage] = useState(1);
   // 게시판에 보이는 게시물 갯수 (기본 10)
   const [items, setItems] = useState(10);
+  const [isModal, setIsModal] = useState(false);
 
   useEffect(() => {
-    const storedBoardList = JSON.parse(localStorage.getItem("boardList"));
+    const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
     if (storedBoardList) {
       setBoardList(storedBoardList);
     }
@@ -37,30 +39,32 @@ function Board() {
   // );
 
   const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem("boradlist")) || []
+    JSON.parse(localStorage.getItem('boradlist')) || []
   );
 
   const moveToWrite = () => {
-    navigate("/write");
+    setIsModal(true);
+    // navigate('/write');
+    console.log(isModal);
   };
 
   return (
     <>
-      <div className='article-container'>
-        <ul className='article-list'>
+      <div className="article-container">
+        <ul className="article-list">
           {boardList
             .slice(items * (page - 1), items * (page - 1) + items)
             .map((board) => (
               // 4) map 함수로 데이터 출력
-              <li className='article' key={board.idx}>
-                <Link className='link' to={`/board/${board.idx}`}>
+              <li className="article" key={board.idx}>
+                <Link className="link" to={`/board/${board.idx}`}>
                   {board.title}
                 </Link>
-                <div className='sub-button'>
-                  <a href='/' className='good-button'>
+                <div className="sub-button">
+                  <a href="/" className="good-button">
                     좋아요
                   </a>
-                  <a href='/' className='reply'>
+                  <a href="/" className="reply">
                     댓글
                   </a>
                 </div>
@@ -68,7 +72,7 @@ function Board() {
             ))}
         </ul>
         <div>
-          <PaginationBox className='PaginationBox'>
+          <PaginationBox className="PaginationBox">
             <Pagination
               activePage={page}
               itemsCountPerPage={items}
@@ -79,11 +83,12 @@ function Board() {
           </PaginationBox>
         </div>
         <div>
-          <button id='create-button' onClick={moveToWrite}>
+          <button id="create-button" onClick={moveToWrite}>
             글쓰기
           </button>
         </div>
       </div>
+      {isModal && <InputForm isModal={isModal} setIsModal={setIsModal} />}
     </>
   );
 }
