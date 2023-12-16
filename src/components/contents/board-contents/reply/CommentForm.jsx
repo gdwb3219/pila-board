@@ -1,5 +1,7 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './CommentForm.css';
+import { useCommentContext } from '../../../../context/CommentContext';
 
 // 현재 시간 구하는 함수
 const time = () => {
@@ -15,87 +17,123 @@ const time = () => {
   return kr_curr;
 };
 
-function CommentForm() {
-  console.log('1. CommentForm 렌더링');
+function CommentForm({ idx, show }) {
+  // console.log("11111111111111. CommentForm 렌더링 시작");
+
   // state 정의
   // comment State : 댓글 1개의 포맷
   const [comment, setComment] = useState({
     comment_id: '',
     content: '',
-    timestamp: time(),
+    timestamp: '',
     createdBy: 'guest',
     like: 0,
     dislike: 0,
     reply_list: [],
   });
 
-  // commentList State : 전체 댓글 리스트
-  const [commentList, setCommentList] = useState([]);
+  // commentList Context State : 전체 댓글 리스트
+  const { setCommentContextState } = useCommentContext();
 
   // comment 비구조 할당
   const { comment_id, content, timestamp, createdBy, like, dislike } = comment;
 
-  useEffect(() => {
-    const storedCommentList =
-      JSON.parse(localStorage.getItem('commentList')) || [];
-    if (storedCommentList) {
-      setCommentList(storedCommentList);
-      console.log('2. storedCommentList');
-    }
-  }, []);
+  // 최초 1회만 실행할 것들
+  // useEffect(() => {
+  //   console.log(
+  //     JSON.parse(localStorage.getItem('commentList')),
+  //     'CommentForm useEffect: Local DB에서 가져온 comment List'
+  //   );
+  //   console.log('CommentForm useEffect: comment State', content);
+  // }, [comment]);
 
-  useEffect(() => {
-    localStorage.setItem('commentList', JSON.stringify(commentList));
-    JSON.parse(localStorage.getItem('commentList'));
-    console.log('3. localStorage수정 후 getItem');
-  }, [commentList]);
+  // 서버 테스트용
+  // useEffect(() => {
+  //   fetch("/api/posts") // Django 서버의 '/api/posts' URL로 GET 요청을 보냄
+  //     .then((response) => response.json())
+  //     .then((data) => setPosts(data))
+  //     .catch((error) => console.error("Error:", error));
+  //   console.log(posts);
+  // }, []);
+  // console.log(posts, "DB 결과");
 
+  // textArea에서 키보드 입력 시, comment state의 content 정보를 변경함
   const handleChange = (e) => {
+    // text area에 키보드를 타이핑 할 때 실행
     const { name, value } = e.target;
-    // const updateComment = { ...comment, [name]: value };
-    setComment({ ...comment, [name]: value });
-    console.log('4. handleChange 렌더링');
+    setComment((prevComment) => ({ ...prevComment, [name]: value }));
   };
 
   // Submit 클릭 시, 댓글이 하나 추가된다.
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     // e.preventDefault();
-    console.log(content, e, 'KEY');
-    // if (e.key === "Enter") {
-    //   await setCommentList([...commentList, comment]);
-    // }
-    await setCommentList([...commentList, comment]);
-    // event data를 List에 추가하는 함수 필요
-    console.log(commentList);
-    console.log(JSON.parse(localStorage.getItem('commentList')));
-    alert('댓글이 등록되었습니다.');
+    const createUUID2 = uuidv4();
+
+    const submitComment = {
+      ...comment,
+      comment_id: createUUID2,
+      timestamp: time(),
+      reply_list: [idx],
+    };
+
+    // Local Storage에서 List 가져온 후, new Comment 추가
+    let temp_commentList =
+      JSON.parse(localStorage.getItem('commentList')) || [];
+    temp_commentList.push(submitComment);
+
+    // setTempCommentList((prev) => [...prev, comment]);
+    setCommentContextState((prev) => [...prev, submitComment]);
+
+    // localStorage.setItem("commentList", JSON.stringify(commentContextState));
+    localStorage.setItem('commentList', JSON.stringify(temp_commentList));
+    console.log(
+      'LocalStorage에 commentContextState Set 완료!!!!!!!!!!!!!!!!!!'
+    );
+
+    // alert("댓글이 등록되었습니다.");
+    setComment((prev) => ({ ...prev, content: '' }));
+
+    // Server POST 요청 TEST
+    // fetch("/api/posts", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    // console.log(posts);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
+      console.log(e, 'handleKeyPress');
       handleSubmit(e);
     }
   };
 
+  // console.log('CommentForm 끝111111111111');
+
   return (
     <>
-      <form className="comment_fo" onSubmit={handleSubmit}>
-        <div className="txtara">
-          <textarea
-            name="content"
-            value={content}
-            placeholder="댓글을 입력해주세요"
-            onChange={handleChange}
-            onKeyDown={handleKeyPress}
-          ></textarea>
-        </div>
-        <div className="fnc">
-          <button type="submit" className="btn">
-            등록
-          </button>
-          <button className="btn">취소</button>
-        </div>
-      </form>
+      {show && (
+        <form className="comment_fo" onSubmit={handleSubmit}>
+          <div className="txtara">
+            <textarea
+              name="content"
+              value={content}
+              placeholder="댓글을 입력해주세요"
+              onChange={handleChange}
+              onKeyDown={handleKeyPress}
+            ></textarea>
+          </div>
+          <div className="fnc">
+            <button type="submit" className="btn">
+              등록
+            </button>
+            <button type="button" className="btn">
+              취소
+            </button>
+          </div>
+        </form>
+      )}
     </>
   );
 }

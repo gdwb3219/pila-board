@@ -29,3 +29,8 @@
 .boardcard-timestamp {
   margin-bottom: 10px;
 }
+
+.reply-count {
+  color: #444;
+  font-size: 14px;
+}
