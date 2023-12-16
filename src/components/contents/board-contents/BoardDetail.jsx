@@ -18,23 +18,29 @@ function BoardDetail() {
   const { idx } = useParams();
   // const [loading, setLoading] = useState(false);
 
-  const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem("boardList")) || []
-  );
-
-  const filtered_boardList = boardList.filter(
-    (content) => content.idx === Number(idx)
+  const INITIAL_CONTENT = JSON.parse(localStorage.getItem("boardList"));
+  const CONTENTS = INITIAL_CONTENT.filter(
+    (contents) => contents.idx === Number(idx)
   )[0];
+
+  const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
+
+  const INITIALLIST =
+    INITIAL_localDB.filter((comments) => comments.reply_list[0] === idx) || [];
+  const [commentList, setCommentList] = useState(INITIALLIST);
+
+  const { title, contents, created_by, timestamp } = CONTENTS;
+
   return (
     <>
       <div className='wrapped'>
         <div className='contents'>
           <BoardCard
-            idx={filtered_boardList.idx}
-            title={filtered_boardList.title}
-            contents={filtered_boardList.contents}
-            created_by={filtered_boardList.created_by}
-            timestamp={filtered_boardList.timestamp}
+            title={title}
+            contents={contents}
+            created_by={created_by}
+            timestamp={timestamp}
+            commentCount={commentList.length}
           />
           <CommentContextProvider>
             <Reply idx={idx} />
