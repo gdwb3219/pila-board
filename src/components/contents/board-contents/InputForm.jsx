@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import mockBoardList from "../../../mockdata.json";
 
 // 현재 시간 구하는 함수
 const time = () => {

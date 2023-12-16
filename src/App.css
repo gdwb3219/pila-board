@@ -14,3 +14,7 @@
     background-color: skyblue;
   }
 }
+
+#body-container {
+  min-height: 811px;
+}

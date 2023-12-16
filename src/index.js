@@ -14,13 +14,16 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <Navbar />
-    <Routes>
-      <Route path='/' element={<App />} />
-      <Route path='board' element={<BoardContent />} />
-      <Route path='members' element={<Members />} />
-      <Route path='/board/:idx' element={<BoardDetail />} />
-      <Route path='/write' element={<InputForm />} />
-    </Routes>
+    <div id='body-container'>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='board' element={<BoardContent />} />
+        <Route path='members' element={<Members />} />
+        <Route path='/board/:idx' element={<BoardDetail />} />
+        <Route path='/write' element={<InputForm />} />
+      </Routes>
+    </div>
+
     <Footer />
   </BrowserRouter>
   // </React.StrictMode>
