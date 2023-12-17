@@ -1,8 +1,16 @@
 .Board-container {
   display: flex;
-  background-color: orange;
-  height: 100vh;
+  background-color: #fff;
+  height: 80vh;
   padding: 20px;
   margin: 0 30px;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.article-container {
+  width: 750px;
+}
+
+h1 {
+  padding: 10px;
 }

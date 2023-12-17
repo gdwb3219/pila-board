@@ -1,7 +1,11 @@
 .footer-container {
-  background-color: skyblue;
+  background-color: #222;
   height: 10vh;
-  /* width: 100%; */
-  /* position: fixed; */
   bottom: 0px;
+  color: white;
+}
+
+.footer-container.wrapped {
+  display: flex;
+  flex-direction: column;
 }

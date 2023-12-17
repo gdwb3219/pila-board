@@ -129,11 +129,11 @@ const PaginationBox = styled.div`
     color: white;
   }
   ul.pagination li.active {
-    background-color: #00faa6;
+    background-color: rgb(0, 150, 0);
   }
   ul.pagination li a:hover,
   ul.pagination li a.active {
-    color: blue;
+    color: skyblue;
   }
 `;
 
