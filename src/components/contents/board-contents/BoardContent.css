@@ -1,16 +1,43 @@
-.Board-container {
+.content-container {
   display: flex;
   background-color: #fff;
   height: 80vh;
-  padding: 20px;
-  margin: 0 30px;
+  margin: 10px 0 10px 0;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 .article-container {
-  width: 750px;
+  width: 800px;
 }
 
 h1 {
   padding: 10px;
+}
+
+.Board-Component-container p {
+  margin: 10px 0 10px 0;
+}
+
+.another-Component-container {
+  margin-left: 30px;
+  width: 330px;
+  margin-left: auto;
+}
+
+.another-Component-container p {
+  margin: 10px 0 10px 0;
+}
+
+.chart-container {
+  height: 500px;
+  background-color: rgb(0, 80, 0);
+  padding: 10px;
+}
+
+.chart {
+  /* margin: 10px 10px 10px 10px; */
+  background-color: white;
+  width: 100%;
+  height: 100%;
 }

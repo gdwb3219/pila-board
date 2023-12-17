@@ -77,8 +77,8 @@
 }
 
 #form-container {
-  width: 700px;
-  height: 500px;
+  width: 800px;
+  height: 600px;
   background-color: rgb(255, 255, 255);
   position: fixed;
   top: 50%;
@@ -108,6 +108,7 @@
   border: none;
   position: absolute;
   right: 0;
+  top: 0;
   margin-left: auto;
 }
 
@@ -116,7 +117,7 @@
   position: absolute;
   top: 0;
   left: 15px;
-  content: '';
+  content: "";
   height: 30px;
   width: 2px;
   background-color: rgb(66, 66, 66);
@@ -138,19 +139,19 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 20px;
 }
 
 .ta {
   background-color: #fff;
   border: 0;
   border-bottom: solid 1px #c3c8cc;
-  width: 95%;
+  width: 100%;
   outline: none;
   font-size: 30px;
   font-weight: bold;
   color: #4c4c4c;
-  padding: 5px;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .title.ta {
@@ -159,8 +160,15 @@
 
 .createdBy.ta {
   font-size: 18px;
+  height: 50px;
 }
 
+.contents.ta {
+  height: 250px;
+  font-size: 20px;
+  font-family: "Nanum Gothic", sans-serif;
+  resize: none;
+}
 .title.ta::placeholder {
   color: #b1b1b1;
   font-size: 24px;
@@ -169,17 +177,17 @@
 
 .createdBy.ta::placeholder {
   color: #b1b1b1;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .contents.ta::placeholder {
   color: #b1b1b1;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
 }
 
-.title {
+/* .title {
   margin: 5px;
 }
 
@@ -189,23 +197,23 @@
 
 .contents {
   margin: 5px;
-}
-
-.contents.ta {
-  height: 150px;
-  font-size: 24px;
-  font-family: 'Nanum Gothic', sans-serif;
-}
+} */
 
 .button-form {
   border: 0;
-  height: 40px;
-  width: 70px;
   font-size: 16px;
   font-weight: 700;
   color: #4c4c4c;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+#save-container .button-form {
+  width: 80px;
+  height: 45px;
+  position: absolute;
   margin-left: auto;
+  bottom: 0;
+  right: 0;
 }
 
 .button-form:hover {

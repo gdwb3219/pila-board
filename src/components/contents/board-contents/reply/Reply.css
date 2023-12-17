@@ -58,7 +58,7 @@
 }
 
 .loadMore-button:hover {
-  background-color: rgb(177, 108, 226);
+  background-color: #c882ff;
   border: dashed 1px rgb(196, 196, 196);
   width: 100%;
   height: 60px;
