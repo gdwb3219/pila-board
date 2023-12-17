@@ -1,6 +1,9 @@
 .article-container {
-  background-color: rgb(0, 80, 0);
+  /* background-color: rgb(0, 80, 0); */
   padding: 10px;
+  box-shadow: 10px 10px 30px #dddddd;
+  border-radius: 5px;
+  border: solid 1px #e5e5e5;
 }
 
 .article-list {
@@ -117,7 +120,7 @@
   position: absolute;
   top: 0;
   left: 15px;
-  content: "";
+  content: '';
   height: 30px;
   width: 2px;
   background-color: rgb(66, 66, 66);
@@ -151,11 +154,12 @@
   font-size: 30px;
   font-weight: bold;
   color: #4c4c4c;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .title.ta {
-  height: 60px;
+  height: 80px;
+  font-size: 48px;
 }
 
 .createdBy.ta {
@@ -166,12 +170,12 @@
 .contents.ta {
   height: 250px;
   font-size: 20px;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   resize: none;
 }
 .title.ta::placeholder {
   color: #b1b1b1;
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 500;
 }
 
@@ -204,7 +208,7 @@
   font-size: 16px;
   font-weight: 700;
   color: #4c4c4c;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 #save-container .button-form {

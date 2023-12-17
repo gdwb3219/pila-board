@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // 현재 시간 구하는 함수
 const time = () => {
   const curr = new Date();
-  console.log("현재시간(Locale) : " + curr + "<br>"); // 현재시간(Locale) : Tue May 31 2022 09:00:30
+  console.log('현재시간(Locale) : ' + curr + '<br>'); // 현재시간(Locale) : Tue May 31 2022 09:00:30
 
   // 2. UTC 시간 계산
   const utc = curr.getTime() + curr.getTimezoneOffset() * 60 * 1000;
@@ -16,30 +16,35 @@ const time = () => {
 };
 
 const InputForm = ({ isModal, setIsModal }) => {
+  const inputRef = useRef(null);
+
   const navigate = useNavigate();
   // 처음 LocalStorage에 있는 boradList로 Parsing 하여 객체 리스트 불러오기
   useEffect(() => {
-    const storedBoardList = JSON.parse(localStorage.getItem("boardList"));
+    const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
     if (storedBoardList) {
       setBoardList(storedBoardList);
     }
+    // 자동으로 커서 활성화
+    inputRef.current.focus();
   }, []);
+
   // 초기값 boardList 불러오기 (없으면 빈 리스트)
   const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem("boardList")) || []
+    JSON.parse(localStorage.getItem('boardList')) || []
   );
   // 초기값 board State 설정
   const [board, setBoard] = useState({
-    idx: boardList.length > 0 ? boardList[boardList.length - 1]["idx"] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
-    title: "",
-    createdBy: "",
-    contents: "",
+    idx: boardList.length > 0 ? boardList[boardList.length - 1]['idx'] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
+    title: '',
+    createdBy: '',
+    contents: '',
     timestamp: time(),
   });
 
   // boardList가 변할 때마다 새로운 boardList를 LocalStorage에 저장 (update 기능)
   useEffect(() => {
-    localStorage.setItem("boardList", JSON.stringify(boardList));
+    localStorage.setItem('boardList', JSON.stringify(boardList));
   }, [boardList]);
 
   const { idx, title, createdBy, contents, timestamp } = board; //비구조화 할당
@@ -61,7 +66,7 @@ const InputForm = ({ isModal, setIsModal }) => {
     // })
     await setBoardList([...boardList, board]);
     console.log(boardList);
-    alert("등록되었습니다.");
+    alert('등록되었습니다.');
     console.log(boardList);
     setIsModal(false);
   };
@@ -74,53 +79,57 @@ const InputForm = ({ isModal, setIsModal }) => {
 
   return (
     <>
-      <div id='form-background'></div>
-      <div id='form-container'>
-        <div className='form-wrapper'>
-          <div id='create-header'>
+      <div id="form-background"></div>
+      <div id="form-container">
+        <div className="form-wrapper">
+          <div id="create-header">
             <p>글쓰기</p>
-            <button className='X-button' onClick={createCancel}></button>
+            <button className="X-button" onClick={createCancel}></button>
           </div>
-          <div className='title'>
+          <div className="title">
             <input
-              className='title ta'
-              placeholder='제목을 입력하세요'
-              type='text'
-              name='title'
+              className="title ta"
+              placeholder="제목을 입력하세요"
+              type="text"
+              name="title"
               value={title}
               onChange={onChange}
+              ref={inputRef}
             />
           </div>
           <br />
-          <div className='createdBy'>
+          <div className="createdBy">
             <input
-              className='createdBy ta'
-              placeholder='작성자 ID를 입력하세요'
-              type='text'
-              name='createdBy'
+              className="createdBy ta"
+              placeholder="작성자 ID를 입력하세요"
+              type="text"
+              name="createdBy"
               value={createdBy}
               onChange={onChange}
             />
           </div>
           <br />
-          <div className='contents'>
+          <div className="contents">
             <textarea
-              className='contents ta'
-              placeholder='내용을 입력하세요'
-              name='contents'
-              cols='30'
-              rows='10'
+              className="contents ta"
+              placeholder="내용을 입력하세요"
+              name="contents"
+              cols="30"
+              rows="10"
               value={contents}
               onChange={onChange}
             ></textarea>
           </div>
           <br />
-          <div id='save-container'>
-            <button className='button-form' onClick={saveBoard}>
+          <div id="save-container">
+            <button className="button-form" onClick={saveBoard}>
               등록
             </button>
           </div>
-          <div className='create-tool'>도구 모음</div>
+          <div className="create-tool">
+            도구 모음
+            <input type="file" accept="image/*"></input>
+          </div>
         </div>
       </div>
     </>

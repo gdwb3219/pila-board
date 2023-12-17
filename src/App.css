@@ -1,8 +1,9 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', 'Nanum Gothic', sans-serif;
   font-weight: bold;
+  color: #333;
 }
 
 .wrapped {
@@ -18,4 +19,5 @@
 
 #body-container {
   min-height: 811px;
+  background-color: #f6f6f8;
 }

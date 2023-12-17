@@ -12,25 +12,38 @@
 }
 
 .boardcard-title {
-  height: 50px;
+  font-size: 48px;
 }
 .boardcard-created {
-  left: 10px;
-  position: relative;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-left: 20px;
 }
 .boardcard-content {
   position: relative;
-  top: 10px;
-  left: 10px;
   font-size: 16px;
   height: 300px;
 }
 .boardcard-timestamp {
-  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .reply-count {
   color: #444;
   font-size: 14px;
+  margin-left: auto;
+}
+
+.BoardCard-component-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.BoardCard-component-container p {
+  padding: 5px;
+}
+
+.sub-title-container {
+  display: flex;
+  flex-direction: row;
 }

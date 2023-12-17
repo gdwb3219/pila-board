@@ -122,7 +122,7 @@ const PaginationBox = styled.div`
   }
   ul.pagination li a {
     text-decoration: none;
-    color: white;
+    color: #333;
     font-size: 1rem;
   }
   ul.pagination li.active a {

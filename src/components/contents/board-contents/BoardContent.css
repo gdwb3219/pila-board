@@ -31,8 +31,11 @@ h1 {
 
 .chart-container {
   height: 500px;
-  background-color: rgb(0, 80, 0);
+  /* background-color: rgb(0, 80, 0); */
   padding: 10px;
+  box-shadow: 10px 10px 30px #dddddd;
+  border-radius: 5px;
+  border: solid 1px #e5e5e5;
 }
 
 .chart {
