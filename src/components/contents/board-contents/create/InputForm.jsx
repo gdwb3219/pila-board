@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import useKeyEscClose from '../../../hooks/useKeyEscClose';
 
 // 현재 시간 구하는 함수
 const time = () => {
@@ -18,7 +19,7 @@ const time = () => {
 const InputForm = ({ isModal, setIsModal }) => {
   const inputRef = useRef(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // 처음 LocalStorage에 있는 boradList로 Parsing 하여 객체 리스트 불러오기
   useEffect(() => {
     const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
@@ -71,11 +72,40 @@ const InputForm = ({ isModal, setIsModal }) => {
     setIsModal(false);
   };
 
+  // Modal Close를 위한 close함수 설정
+  const cloasModal = () => {
+    setIsModal(false);
+  };
+
+  // Modal Close 하는 Custom Hook
+  useKeyEscClose(cloasModal);
+
   const createCancel = () => {
     // navigate('/');
     setIsModal(false);
     console.log(isModal);
   };
+
+  // Editor 실험중--------------------------------------------------------
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleEnterSubmit();
+    }
+  };
+
+  const handleEnterSubmit = () => {
+    console.log(value);
+  };
+
+  const [value, setValue] = useState([]);
+
+  const handleOnInput = (e) => {
+    const { textContent } = e.currentTarget;
+    if (textContent !== null) {
+      setValue(textContent);
+    }
+  };
+  // Editor 실험중--------------------------------------------------------
 
   return (
     <>
@@ -119,6 +149,18 @@ const InputForm = ({ isModal, setIsModal }) => {
               value={contents}
               onChange={onChange}
             ></textarea>
+            {/*  실험중 */}
+            <form onSubmit={handleEnterSubmit}>
+              <h3
+                contentEditable
+                suppressContentEditableWarning
+                onKeyDown={handleEnter}
+                onInput={handleOnInput}
+              >
+                게시글 제목
+              </h3>
+            </form>
+            {/*  실험중 */}
           </div>
           <br />
           <div id="save-container">

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Pagination from 'react-js-pagination';
 import styled from 'styled-components';
-import InputForm from './InputForm';
+import InputForm from './create/InputForm';
 
 function Board() {
   const navigate = useNavigate();
