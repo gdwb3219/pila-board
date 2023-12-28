@@ -15,14 +15,15 @@ function Board() {
   const [items, setItems] = useState(10);
   const [isModal, setIsModal] = useState(false);
   const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem('boradlist')) || []
+    JSON.parse(localStorage.getItem('boardList')) || []
   );
 
   useEffect(() => {
-    const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
-    if (storedBoardList) {
-      setBoardList(storedBoardList);
-    }
+    // const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
+    // if (storedBoardList) {
+    //   setBoardList(storedBoardList);
+    // }
+    setIsModal(false);
   }, [boardList]);
 
   const handlePageChange = (page) => {
