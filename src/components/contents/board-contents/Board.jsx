@@ -14,13 +14,16 @@ function Board() {
   // 게시판에 보이는 게시물 갯수 (기본 10)
   const [items, setItems] = useState(10);
   const [isModal, setIsModal] = useState(false);
+  const [boardList, setBoardList] = useState(
+    JSON.parse(localStorage.getItem('boradlist')) || []
+  );
 
   useEffect(() => {
     const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
     if (storedBoardList) {
       setBoardList(storedBoardList);
     }
-  }, []);
+  }, [boardList]);
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -37,10 +40,6 @@ function Board() {
   // const [boardList, setBoardList] = useState(
   //   JSON.parse(axios.get("api/posts")) || []
   // );
-
-  const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem('boradlist')) || []
-  );
 
   const moveToWrite = () => {
     setIsModal(true);
