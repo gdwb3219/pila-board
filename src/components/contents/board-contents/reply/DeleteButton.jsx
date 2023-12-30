@@ -23,7 +23,7 @@ function DeleteButton({ k }) {
   };
 
   useEffect(() => {
-    console.log('Delete Button은 useEffect가 실행 되었다.');
+    console.log('Delete Button은 useEffect에서 실행 되었다.');
   }, [isDeleted]);
 
   return (

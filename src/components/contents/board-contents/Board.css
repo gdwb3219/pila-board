@@ -35,7 +35,8 @@
 .link:hover {
   text-decoration: none;
   color: inherit;
-  background-color: orange;
+  background-color: rgb(0, 80, 0);
+  color: white;
 }
 .sub-button {
   width: 200px;
@@ -80,8 +81,8 @@
 }
 
 #form-container {
-  width: 800px;
-  height: 600px;
+  width: 850px;
+  height: 700px;
   background-color: rgb(255, 255, 255);
   position: fixed;
   top: 50%;
@@ -100,7 +101,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #4c4c4c;
 }
@@ -135,7 +136,7 @@
 }
 
 .X-button:hover {
-  background-color: orange;
+  background-color: rgb(0, 80, 0);
 }
 
 .form-wrapper {
@@ -221,7 +222,8 @@
 }
 
 .button-form:hover {
-  background-color: orange;
+  background-color: rgb(0, 80, 0);
+  color: white;
 }
 
 #save-container {

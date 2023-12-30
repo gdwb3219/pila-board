@@ -7,34 +7,41 @@ import '@toast-ui/editor/dist/i18n/ko-kr';
 import { useRef } from 'react';
 import './ToastEditor.css';
 
-function ToastEditor() {
+function ToastEditor({ editorRef, onToastChange }) {
   // const editorRef = useRef();
   // console.log(editorRef);
-  const onChange = () => {
-    // const data = editorRef.current.getInstance().getMarkdown();
-    // console.log(data);
-  };
+  // const onToastChange = () => {
+  //   const data = editorRef.current.getInstance().getMarkdown();
+  //   console.log(data, 'editor');
+  // };
   return (
     <>
       <div className="editor-wrapper">
         <Editor
-          initialValue="hello react editor world!"
+          // initialValue="hello react editor world!"
+          placeholder="내용을 입력하세요"
           previewStyle="vertical"
-          height="300px"
+          height="400px"
           initialEditType="wysiwyg"
           useCommandShortcut={false}
           hideModeSwitch={true}
           plugins={[colorSyntax]}
           language="ko-KR"
-          // ref={editorRef}
-          onChange={onChange}
-          // toolbarItems={[
-          //   ["heading", "bold", "italic", "strike"],
-          //   ["hr", "quote"],
-          //   ["ul", "ol", "task", "indent", "outdent"],
-          //   ["table", /* "image", */ "link"],
-          //   ["code", "codeblock"],
-          // ]}
+          ref={editorRef}
+          onChange={onToastChange}
+          toolbarItems={[
+            [/* "bold", */ 'italic', 'strike'],
+            ['hr', 'quote'],
+            [
+              /* "indent",*/
+              /* "outdent"*/
+            ],
+            [/* "table",*/ 'image', 'link'],
+            [
+              /* "code",*/
+              /* "codeblock"*/
+            ],
+          ]}
         />
       </div>
     </>

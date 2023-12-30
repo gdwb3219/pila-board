@@ -20,7 +20,8 @@ const time = () => {
 };
 
 const InputForm = ({ isModal, setIsModal }) => {
-  const inputRef = useRef(null);
+  const inputRef = useRef();
+  const editorRef = useRef();
   console.log('InputForm 렌더링');
   let temp_boardList = JSON.parse(localStorage.getItem('boardList')) || [];
 
@@ -70,6 +71,19 @@ const InputForm = ({ isModal, setIsModal }) => {
     // console.log(board, 'board');
   };
 
+  // Toast ui Editor change 함수
+  const onToastChange = () => {
+    const data = editorRef.current.getInstance().getMarkdown();
+    const data2 = editorRef.current.getInstance().getHTML();
+    console.log(data, 'editor');
+    console.log(data2, 'HTML');
+    setBoard({
+      ...board,
+      contents: data,
+    });
+    editorRef.current.getInstance().removeHook('addImageBlobHook');
+  };
+
   const saveBoard = async () => {
     const createUUID = uuidv4();
     // setBoard({
@@ -82,7 +96,11 @@ const InputForm = ({ isModal, setIsModal }) => {
 
     const submitBoardList = {
       ...board,
-      idx: createUUID,
+      // idx: createUUID,
+      idx:
+        temp_boardList.length > 0
+          ? temp_boardList[temp_boardList.length - 1]['idx'] + 1
+          : 0, // boardList의 마지막 항목의 인덱스 + 1
       timestamp: time(),
     };
 
@@ -143,9 +161,9 @@ const InputForm = ({ isModal, setIsModal }) => {
               onChange={onChange}
             />
           </div>
-          <ToastEditor />
+          <ToastEditor editorRef={editorRef} onToastChange={onToastChange} />
           <br />
-          <div className="contents">
+          {/* <div className="contents">
             <textarea
               className="contents ta"
               placeholder="내용을 입력하세요"
@@ -155,17 +173,17 @@ const InputForm = ({ isModal, setIsModal }) => {
               value={contents}
               onChange={onChange}
             ></textarea>
-          </div>
+          </div> */}
           <br />
           <div id="save-container">
             <button className="button-form" onClick={saveBoard}>
               등록
             </button>
           </div>
-          <div className="create-tool">
+          {/* <div className="create-tool">
             도구 모음
             <input type="file" accept="image/*"></input>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
