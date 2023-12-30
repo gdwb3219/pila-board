@@ -14,17 +14,22 @@ function Board() {
   // 게시판에 보이는 게시물 갯수 (기본 10)
   const [items, setItems] = useState(10);
   const [isModal, setIsModal] = useState(false);
-  const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem('boardList')) || []
-  );
+  // const [boardList, setBoardList] = useState(
+  //   JSON.parse(localStorage.getItem('boardList')) || []
+  // );
+  const boardList = JSON.parse(localStorage.getItem('boardList')) || [];
+  console.log('Board 렌더링', boardList);
 
-  useEffect(() => {
-    // const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
-    // if (storedBoardList) {
-    //   setBoardList(storedBoardList);
-    // }
-    setIsModal(false);
-  }, [boardList]);
+  // useEffect(() => {
+  //   // const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
+  //   // if (storedBoardList) {
+  //   // setBoardList(storedBoardList);
+  //   // }
+  //   console.log(
+  //     isModal,
+  //     '이 isModal이 출력되고 나서는 false로 바뀌게 될꺼야 하지만 Board는 리렌더링 되지 않아'
+  //   );
+  // }, [boardList]);
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -45,7 +50,10 @@ function Board() {
   const moveToWrite = () => {
     setIsModal(true);
     // navigate('/write');
-    console.log(isModal);
+    console.log(
+      isModal,
+      '이 isModal이 콘솔되고나서 true로 바뀌게 될꺼야, 그리고 다시 Board가 리렌더링 되겠지'
+    );
   };
 
   return (

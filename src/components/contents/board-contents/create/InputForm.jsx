@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 // import { useNavigate } from 'react-router-dom';
 import useKeyEscClose from '../../../hooks/useKeyEscClose';
 import ToastEditor from './editor/ToastEditor';
@@ -21,36 +22,41 @@ const time = () => {
 const InputForm = ({ isModal, setIsModal }) => {
   const inputRef = useRef(null);
   console.log('InputForm 렌더링');
+  let temp_boardList = JSON.parse(localStorage.getItem('boardList')) || [];
 
   // const navigate = useNavigate();
   // 처음 LocalStorage에 있는 boradList로 Parsing 하여 객체 리스트 불러오기
   useEffect(() => {
-    const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
-    if (storedBoardList) {
-      setBoardList(storedBoardList);
-    }
+    // const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
+    // if (storedBoardList) {
+    //   setBoardList(storedBoardList);
+    // }
+    // console.log('첫 번째 useEffect');
   }, []);
 
   // 초기값 boardList 불러오기 (없으면 빈 리스트)
-  const [boardList, setBoardList] = useState(
-    JSON.parse(localStorage.getItem('boardList')) || []
-  );
+  // const [boardList, setBoardList] = useState(
+  //   JSON.parse(localStorage.getItem('boardList')) || []
+  // );
+
+  console.log(temp_boardList, 'BoardList');
+
   // 초기값 board State 설정
   const [board, setBoard] = useState({
-    idx: boardList.length > 0 ? boardList[boardList.length - 1]['idx'] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
+    idx: '', //boardList.length > 0 ? boardList[boardList.length - 1]['idx'] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
     title: '',
     createdBy: '',
     contents: '',
-    timestamp: time(),
+    timestamp: '',
   });
 
   // boardList가 변할 때마다 새로운 boardList를 LocalStorage에 저장 (update 기능)
   useEffect(() => {
-    localStorage.setItem('boardList', JSON.stringify(boardList));
+    // localStorage.setItem('boardList', JSON.stringify(boardList));
     // 자동으로 커서 활성화
-    console.log(inputRef.current, 'current');
     inputRef.current.focus();
-  }, [boardList]);
+    // console.log('두 번째 useEffect');
+  }, []);
 
   const { idx, title, createdBy, contents, timestamp } = board; //비구조화 할당
 
@@ -61,16 +67,33 @@ const InputForm = ({ isModal, setIsModal }) => {
       ...board,
       [name]: value, // 해당 항목만 업데이트
     });
-    console.log(board, 'board');
+    // console.log(board, 'board');
   };
 
   const saveBoard = async () => {
+    const createUUID = uuidv4();
     // setBoard({
     //   ...board,
     //   ["idx"]: boardList[boardList.length -1]["idx"] + 1,
     //   ["timestamp"] : kr_curr
     // })
-    await setBoardList([...boardList, board]);
+
+    // await setBoardList([...boardList, board]);
+
+    const submitBoardList = {
+      ...board,
+      idx: createUUID,
+      timestamp: time(),
+    };
+
+    // let temp_boardList = JSON.parse(localStorage.getItem('boardList')) || [];
+    temp_boardList.push(submitBoardList);
+    console.log(temp_boardList, 'Update');
+    // setBoardList(temp_boardList);
+
+    localStorage.setItem('boardList', JSON.stringify(temp_boardList));
+
+    // setState로 BoardList가 바뀌는 것을 예약함. setBoardList로 바로 state가 바뀌지 않음.
     alert('등록되었습니다.');
     setIsModal(false);
   };
