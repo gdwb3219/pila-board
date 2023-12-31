@@ -51,16 +51,26 @@ const InputForm = ({ isModal, setIsModal }) => {
     timestamp: '',
   });
 
+  // useRef 비교군
+  // const boardRef = useRef({
+  //   idx: '', //boardList.length > 0 ? boardList[boardList.length - 1]['idx'] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
+  //   title: '',
+  //   createdBy: '',
+  //   contents: '',
+  //   timestamp: '',
+  // });
+
   // boardList가 변할 때마다 새로운 boardList를 LocalStorage에 저장 (update 기능)
   useEffect(() => {
     // localStorage.setItem('boardList', JSON.stringify(boardList));
     // 자동으로 커서 활성화
-    console.log(inputRef);
+    // console.log(inputRef);
     inputRef.current.focus();
     // console.log('두 번째 useEffect');
   }, []);
 
   const { idx, title, createdBy, contents, timestamp } = board; //비구조화 할당
+  // const { idx, title, createdBy, contents, timestamp } = boardRef.current;
 
   // input으로 받은 데이터 board state 업데이트
   const onChange = (event) => {
@@ -70,6 +80,12 @@ const InputForm = ({ isModal, setIsModal }) => {
       [name]: value, // 해당 항목만 업데이트
     });
     // console.log(board, 'board');
+
+    // boardRef.current = {
+    //   ...boardRef.current,
+    //   [name]: value,
+    // };
+    // console.log(boardRef.current.getInstance(), 'boardRef');
   };
 
   // Toast ui Editor change 함수
@@ -82,6 +98,12 @@ const InputForm = ({ isModal, setIsModal }) => {
       ...board,
       contents: data,
     });
+
+    // boardRef.current = {
+    //   ...boardRef.current,
+    //   contents: data,
+    // };
+    // console.log(boardRef.current, 'boardRef Content');
     // editorRef.current.getInstance().removeHook('addImageBlobHook');
   };
 
@@ -97,6 +119,7 @@ const InputForm = ({ isModal, setIsModal }) => {
 
     const submitBoardList = {
       ...board,
+      // ...boardRef.current,
       // idx: createUUID,
       idx:
         temp_boardList.length > 0

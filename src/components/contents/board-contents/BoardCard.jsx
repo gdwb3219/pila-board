@@ -1,6 +1,8 @@
 import React from 'react';
 import './BoardCard.css';
 import { Editor } from '@toast-ui/editor';
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 
 function BoardCard({ title, contents, createdBy, timestamp, commentCount }) {
   return (
@@ -13,8 +15,8 @@ function BoardCard({ title, contents, createdBy, timestamp, commentCount }) {
           <p className="reply-count">💬{commentCount}</p>
         </div>
         <hr />
-        <p className="boardcard-content">{contents}</p>
-        {/* <Viewer /> */}
+        {/* <p className="boardcard-content">{contents}</p> */}
+        <Viewer initialValue={contents} />
       </div>
     </>
   );

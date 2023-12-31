@@ -21,12 +21,26 @@ function Board() {
 
   // console.log('Board 렌더링', boardList);
 
-  // useEffect(() => {
-  //   // const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
-  //   // if (storedBoardList) {
-  //   // setBoardList(storedBoardList);
-  //   // }
-  // }, [boardList]);
+  useEffect(() => {
+    // const storedBoardList = JSON.parse(localStorage.getItem('boardList'));
+    // if (storedBoardList) {
+    // setBoardList(storedBoardList);
+    // }
+    // --------------------------------------------
+    // 글쓰기 Modal이 True일 경우 외부 Scroll 고정
+    if (isModal === true) {
+      document.body.style.cssText = `
+        position: fixed; 
+        top: -${window.scrollY}px;
+        overflow-y: scroll;
+        width: 100%;`;
+      return () => {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = '';
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+      };
+    }
+  }, [isModal]);
 
   const handlePageChange = (page) => {
     setPage(page);

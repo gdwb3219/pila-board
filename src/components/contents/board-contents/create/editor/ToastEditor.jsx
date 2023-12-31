@@ -53,13 +53,13 @@ function ToastEditor({ editorRef, onToastChange }) {
               /* "indent",*/
               /* "outdent"*/
             ],
-            // [/* "table",*/ 'image', 'link'],
+            [/* "table",*/ 'image', 'link'],
             [
               /* "code",*/
               /* "codeblock"*/
             ],
           ]}
-          hooks={{ addImageBlobHook: onUploadImage }}
+          // hooks={{ addImageBlobHook: onUploadImage }}  // Image를 file 형태로 저장하기 위해서 필요함. 추후 CDN 활용 시 활성화
         />
       </div>
     </>
