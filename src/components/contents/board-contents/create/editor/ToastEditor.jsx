@@ -14,6 +14,23 @@ function ToastEditor({ editorRef, onToastChange }) {
   //   const data = editorRef.current.getInstance().getMarkdown();
   //   console.log(data, 'editor');
   // };
+
+  // 이미지 컨트롤 함수,
+  // 추후 CDN 서버를 구현하게 되면, 아래 완성 필요.
+  // TO-DO
+  const onUploadImage = async (blob, callback) => {
+    console.log(blob);
+    // ------------------------------------------------------------------------------
+    // -------------추후 CDN 구현 시, fetch Image API 통해서 완성하자. ----------------
+    // await fetchUploadImage(blob).then((path) => {
+    //   console.log(path);
+    //   callback('저장경로', blob.name);
+    // });
+    // -------------추후 CDN 구현 시, fetch Image API 통해서 완성하자. ----------------
+    // ------------------------------------------------------------------------------
+    callback('저장경로', blob.name); // CDN 구현 시 지우자.
+    return true;
+  };
   return (
     <>
       <div className="editor-wrapper">
@@ -36,12 +53,13 @@ function ToastEditor({ editorRef, onToastChange }) {
               /* "indent",*/
               /* "outdent"*/
             ],
-            [/* "table",*/ 'image', 'link'],
+            // [/* "table",*/ 'image', 'link'],
             [
               /* "code",*/
               /* "codeblock"*/
             ],
           ]}
+          hooks={{ addImageBlobHook: onUploadImage }}
         />
       </div>
     </>

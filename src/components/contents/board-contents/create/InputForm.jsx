@@ -55,6 +55,7 @@ const InputForm = ({ isModal, setIsModal }) => {
   useEffect(() => {
     // localStorage.setItem('boardList', JSON.stringify(boardList));
     // 자동으로 커서 활성화
+    console.log(inputRef);
     inputRef.current.focus();
     // console.log('두 번째 useEffect');
   }, []);
@@ -81,7 +82,7 @@ const InputForm = ({ isModal, setIsModal }) => {
       ...board,
       contents: data,
     });
-    editorRef.current.getInstance().removeHook('addImageBlobHook');
+    // editorRef.current.getInstance().removeHook('addImageBlobHook');
   };
 
   const saveBoard = async () => {
