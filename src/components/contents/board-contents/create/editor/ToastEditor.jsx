@@ -38,7 +38,7 @@ function ToastEditor({ editorRef, onToastChange }) {
           // initialValue="hello react editor world!"
           placeholder="내용을 입력하세요"
           previewStyle="vertical"
-          height="400px"
+          height="300px"
           initialEditType="wysiwyg"
           useCommandShortcut={false}
           hideModeSwitch={true}

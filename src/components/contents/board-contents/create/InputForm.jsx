@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 // import { useNavigate } from 'react-router-dom';
 import useKeyEscClose from '../../../hooks/useKeyEscClose';
 import ToastEditor from './editor/ToastEditor';
+import Hashtag from './Hashtag';
+import './CreateStyle.css';
 // import ToastEditor from './editor/ToastEditor';
 
 // 현재 시간 구하는 함수
@@ -186,28 +188,13 @@ const InputForm = ({ isModal, setIsModal }) => {
             />
           </div>
           <ToastEditor editorRef={editorRef} onToastChange={onToastChange} />
-          <br />
-          {/* <div className="contents">
-            <textarea
-              className="contents ta"
-              placeholder="내용을 입력하세요"
-              name="contents"
-              cols="30"
-              rows="10"
-              value={contents}
-              onChange={onChange}
-            ></textarea>
-          </div> */}
+          <Hashtag />
           <br />
           <div id="save-container">
             <button className="button-form" onClick={saveBoard}>
               등록
             </button>
           </div>
-          {/* <div className="create-tool">
-            도구 모음
-            <input type="file" accept="image/*"></input>
-          </div> */}
         </div>
       </div>
     </>
