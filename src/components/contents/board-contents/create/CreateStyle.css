@@ -172,7 +172,7 @@
 /* ------------------ */
 
 .hashtag-container {
-  background-color: blueviolet;
+  background-color: orange;
   margin-top: 10px;
 }
 
@@ -192,4 +192,25 @@
   outline-color: #ccc;
   border: 1px;
   border-color: #ccc;
+}
+
+.hashtag-list {
+  background-color: white;
+  list-style-type: none;
+  display: flex;
+}
+
+.hash {
+  background-color: #005000;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.hash button {
+  /* border: none; */
+  background-color: white;
+  border-style: none;
+  margin-left: 5px;
 }
