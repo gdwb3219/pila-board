@@ -21,7 +21,7 @@ const 댓글 = {
   UserID: 'id',
   Like: 123,
   DisLike: 123,
-  isComment: true or false,  // true면 댓글 false면 대댓글
+  isComment: true | false,  // true면 댓글 false면 대댓글
   Depend: 'asdf-123', // depend ID가 PostID면 댓글
   DateTimePosted: time(),
 };
@@ -32,7 +32,7 @@ const 대댓글 = {
   UserID: 'id',
   Like: 123,
   DisLike: 123,
-  isComment: true or false,  // true면 댓글 false면 대댓글
+  isComment: true | false,  // true면 댓글 false면 대댓글
   Depend: 'asdf-123', // depend ID가 Comment ID면 대댓글
   DateTimePosted: time(),
 };
