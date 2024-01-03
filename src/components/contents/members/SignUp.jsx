@@ -29,13 +29,17 @@ const SignUp = () => {
   const [userList, setUserList] = useState(
     JSON.parse(localStorage.getItem("userList")) || []
   );
-  // 초기값 board State 설정
+  // 초기값 user State 설정
   const [user, setUser] = useState({
     idx: userList.length > 0 ? userList[userList.length - 1]["idx"] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
     id: "",
     pw: "",
     timestamp: time(),
   });
+  const [dpNameCheck, setDpNameCheck] = useState(false);
+  const [dpPassCheck, setDpPassCheck] = useState(false);
+  const [checkError, setCheckError] = useState("");
+  const [error, setError] = useState("");
 
   // boardList가 변할 때마다 새로운 boardList를 LocalStorage에 저장 (update 기능)
   useEffect(() => {
@@ -44,15 +48,37 @@ const SignUp = () => {
 
   const { idx, id, pw, timestamp } = user; //비구조화 할당
 
-  // input으로 받은 데이터 board state 업데이트
-  const onChange = (event) => {
+  // input으로 받은 데이터 User state 업데이트
+  const onChange = async(event) => {
     const { value, name } = event.target; //event.target에서 name과 value만 가져오기
     setUser({
       ...user,
       [name]: value, // 해당 항목만 업데이트
     });
+    if (name === "id") {
+      const IDcheck = await userList.filter(c => c.id === value);
+      if (value.length < 3) {
+        setCheckError("3글자 이상 사용가능 합니다.")
+      }
+      else if (IDcheck.length === 0 && value.length >= 3) {
+          setCheckError("사용가능");
+          setDpNameCheck(true);
+      }
+      else {
+          if (value.length !== 0) setCheckError("이미 다른 사용자가 사용 중 입니다.");
+          else setCheckError("");
+          setDpNameCheck(false);
+      }
+    }
+    if (name === "pw") {
+      if (value.length < 5) {
+        setDpPassCheck(false); 
+      }
+      else {
+        setDpPassCheck(true); 
+      }
   };
-
+  }
   const saveUser = async () => {
     // setBoard({
     //   ...board,
@@ -65,29 +91,27 @@ const SignUp = () => {
     navigate("/");
   };
 
-  const checkUser = () => {
-    
-  }
-
   const backToList = () => {
     navigate("/");
   };
 
   return (
-    <div>
+    <>
+    <form>    
       <div>
         <span>ID</span>
-        <input type='text' name='id' value={id} onChange={onChange} />
-        <button onClick={checkUser}>ID 확인</button>
+        <input type='text' name='id' required value={id} onChange={onChange} placeholder="ID는 세글자 이상입니다." />
       </div>
+      <span id="checkMess">{checkError}</span>
       <br />
       <div>
         <span>Password</span>
         <input
-          type='text'
+          type='password'
           name='pw'
-          value={pw}
+          required value={pw}
           onChange={onChange}
+          placeholder="비밀번호 5글자 이상 입력해주세요."
         />
       </div>
       <br />
@@ -95,7 +119,8 @@ const SignUp = () => {
         <button onClick={saveUser}>저장</button>
         <button onClick={backToList}>취소</button>
       </div>
-    </div>
+      </form>
+    </>
   );
 };
 
