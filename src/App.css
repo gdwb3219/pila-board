@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Ubuntu', 'Nanum Gothic', sans-serif;
+  font-family: "Ubuntu", "Nanum Gothic", sans-serif;
   font-weight: bold;
   color: #333;
 }
@@ -12,8 +12,16 @@
   margin-right: auto;
 }
 
+/* width가 1200px보다 클 때 적용되는 CSS */
 @media screen and (min-width: 1200px) {
   .wrapped {
+    /* background-color: orange; */
+  }
+
+  .Navbar-Area {
+    /* position: fixed; */
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

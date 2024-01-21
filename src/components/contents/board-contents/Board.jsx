@@ -1,11 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import './Board.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Pagination from 'react-js-pagination';
-import styled from 'styled-components';
-import InputForm from './create/InputForm';
+import { Link, useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import "./Board.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Pagination from "react-js-pagination";
+import styled from "styled-components";
+import InputForm from "./create/InputForm";
 
 function Board() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function Board() {
   // const [boardList, setBoardList] = useState(
   //   JSON.parse(localStorage.getItem('boardList')) || []
   // );
-  const boardList = JSON.parse(localStorage.getItem('boardList')) || [];
+  const boardList = JSON.parse(localStorage.getItem("boardList")) || [];
 
   // console.log('Board 렌더링', boardList);
 
@@ -36,8 +36,8 @@ function Board() {
         width: 100%;`;
       return () => {
         const scrollY = document.body.style.top;
-        document.body.style.cssText = '';
-        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
       };
     }
   }, [isModal]);
@@ -65,21 +65,21 @@ function Board() {
 
   return (
     <>
-      <div className="article-container">
-        <ul className="article-list">
+      <div className='article-container'>
+        <ul className='article-list'>
           {boardList
             .slice(items * (page - 1), items * (page - 1) + items)
             .map((board) => (
               // 4) map 함수로 데이터 출력
-              <li className="article" key={board.idx}>
-                <Link className="link" to={`/board/${board.idx}`}>
+              <li className='article' key={board.idx}>
+                <Link className='link' to={`/board/${board.idx}`}>
                   {board.title}
                 </Link>
-                <div className="sub-button">
-                  <a href="/" className="good-button">
+                <div className='sub-button'>
+                  <a href='/' className='good-button'>
                     좋아요
                   </a>
-                  <a href="/" className="reply">
+                  <a href='/' className='reply'>
                     댓글
                   </a>
                 </div>
@@ -87,7 +87,7 @@ function Board() {
             ))}
         </ul>
         <div>
-          <PaginationBox className="PaginationBox">
+          <PaginationBox className='PaginationBox'>
             <Pagination
               activePage={page}
               itemsCountPerPage={items}
@@ -98,7 +98,7 @@ function Board() {
           </PaginationBox>
         </div>
         <div>
-          <button id="create-button" onClick={moveToWrite}>
+          <button id='create-button' onClick={moveToWrite}>
             글쓰기
           </button>
         </div>
@@ -144,7 +144,7 @@ const PaginationBox = styled.div`
     color: white;
   }
   ul.pagination li.active {
-    background-color: rgb(0, 150, 0);
+    background-color: #005000;
   }
   ul.pagination li a:hover,
   ul.pagination li a.active {

@@ -19,6 +19,10 @@ h1 {
   margin: 10px 0 10px 0;
 }
 
+.Board-name {
+  font-size: 20px;
+}
+
 .another-Component-container {
   margin-left: 30px;
   width: 330px;

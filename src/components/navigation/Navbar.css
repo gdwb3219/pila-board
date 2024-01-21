@@ -1,3 +1,8 @@
+.Navbar-Area {
+  /* position: fixed; */
+  background-color: #f6f6f8;
+}
+
 .header {
   display: flex;
   height: 60px;

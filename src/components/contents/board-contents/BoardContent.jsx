@@ -9,7 +9,7 @@ function BoardContent() {
         <h1>게시판</h1>
         <div className='content-container'>
           <div className='Board-Component-container'>
-            <p>This is Board Component</p>
+            <div className='Board-name'>호호요가 대항마 게시판</div>
             <Board />
           </div>
           <div className='another-Component-container'>

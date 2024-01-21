@@ -29,15 +29,17 @@
   justify-items: flex-start;
 }
 
-#create-header p {
+#create-header div {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #4c4c4c;
+  font-size: 26px;
+  /* font-weight: 700; */
+  font-family: "ubuntu", "san-serif";
+  font-weight: bold;
+  color: #6b6b6c;
 }
 
 .X-button {
@@ -55,7 +57,7 @@
   position: absolute;
   top: 0;
   left: 15px;
-  content: '';
+  content: "";
   height: 30px;
   width: 2px;
   background-color: rgb(66, 66, 66);
@@ -89,7 +91,7 @@
   font-size: 30px;
   font-weight: bold;
   color: #4c4c4c;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .title.ta {
@@ -105,7 +107,7 @@
 .contents.ta {
   height: 250px;
   font-size: 20px;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
   resize: none;
 }
 .title.ta::placeholder {
@@ -126,10 +128,6 @@
   font-weight: 500;
 }
 
-/* .title {
-  margin: 5px;
-} */
-
 .createdBy {
   margin-bottom: 5px;
 }
@@ -143,7 +141,7 @@
   font-size: 16px;
   font-weight: 700;
   color: #4c4c4c;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 #save-container .button-form {
@@ -172,11 +170,12 @@
 /* ------------------ */
 
 .hashtag-container {
-  background-color: orange;
+  background-color: #005000;
   margin-top: 10px;
 }
 
 .ta-hashtag {
+  background-color: #edf8ed;
   font-size: 15px;
   width: 100%;
   box-sizing: border-box;
@@ -200,17 +199,42 @@
   display: flex;
 }
 
-.hash {
+.hash div {
   background-color: #005000;
   color: white;
   margin: 5px;
   padding: 5px;
   border-radius: 5px;
+  display: flex;
+  height: 20px;
 }
 
-.hash button {
+.hash .close {
   /* border: none; */
-  background-color: white;
+  /* background-color: blue; */
   border-style: none;
   margin-left: 5px;
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  position: relative;
+  top: 2px;
+}
+
+.hash .close:hover {
+  background-color: orange;
+}
+
+.hashtag-list p {
+  margin: 0;
+  color: white;
+}
+
+.dnanfwjd {
+  color: #005000;
+  position: relative;
+}
+
+.dnanfwjd path {
+  fill: rgb(255, 255, 255);
 }

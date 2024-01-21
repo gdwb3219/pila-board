@@ -1,14 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-function useKeyEscClose(closeThing) {
+function useKeyEscClose(closeThing, cond) {
   useEffect(() => {
+    console.log("Hook cond");
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
-        closeThing();
+        closeThing(cond);
+      } else {
+        console.log("Hook 거절");
       }
     };
-    window.addEventListener('keydown', escKeyModalClose);
-    return () => window.removeEventListener('keydown', escKeyModalClose);
+    window.addEventListener("keydown", escKeyModalClose);
+    return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
 }
 
