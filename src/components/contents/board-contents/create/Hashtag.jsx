@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { CgCloseR, CgHashtag } from "react-icons/cg";
+import { CgHashtag } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 import "./CreateStyle.css";
+import { useHashtagContext } from "../../../../context/HashtagContext";
 
 function Hashtag() {
   const [inputValue, setInputValue] = useState("");
   const [hashtagList, setHashtagList] = useState([]);
+  const { setHashtagContextList } = useHashtagContext();
 
   const onChangeFnc = (e) => {
     setInputValue(e.target.value);
@@ -13,7 +15,7 @@ function Hashtag() {
 
   const handleInputKeyPress = (e) => {
     if (e.key === " " || e.key === "Enter") {
-      if (hashtagList.length > 10) {
+      if (hashtagList.length > 9) {
         console.log("10개를 넘었습니다.");
       } else {
         if (inputValue.trim() !== "") {
@@ -32,6 +34,7 @@ function Hashtag() {
 
   useEffect(() => {
     console.log(hashtagList, "HashTag");
+    setHashtagContextList(hashtagList);
   }, [hashtagList]);
   return (
     <>

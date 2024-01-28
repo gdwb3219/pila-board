@@ -51,3 +51,7 @@
 .viewer-container {
   min-height: 300px;
 }
+
+.viewer {
+  background-color: #f6f6f8;
+}

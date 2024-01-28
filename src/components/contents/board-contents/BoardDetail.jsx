@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import BoardCard from './BoardCard';
-import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import BoardCard from "./BoardCard";
+import { useParams } from "react-router-dom";
 // import boardList from "../../../mockdata.json";
-import Reply from './reply/Reply';
-import './BoardDetail.css';
-import { CommentContextProvider } from '../../../context/CommentContext';
+import Reply from "./reply/Reply";
+import "./BoardDetail.css";
+import { CommentContextProvider } from "../../../context/CommentContext";
 
 // ----------------------------------------
 // 게시판 글 목록 클릭해서 세부 게시글로 이동
@@ -18,27 +18,28 @@ function BoardDetail() {
   const { idx } = useParams();
   // const [loading, setLoading] = useState(false);
 
-  const INITIAL_CONTENT = JSON.parse(localStorage.getItem('boardList'));
+  const INITIAL_CONTENT = JSON.parse(localStorage.getItem("boardList"));
   const CONTENTS = INITIAL_CONTENT.filter(
     (contents) => contents.idx === Number(idx)
   )[0];
 
-  const INITIAL_localDB = JSON.parse(localStorage.getItem('commentList')) || [];
+  const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
 
   const INITIALLIST =
     INITIAL_localDB.filter((comments) => comments.reply_list[0] === idx) || [];
   const [commentList, setCommentList] = useState(INITIALLIST);
 
-  const { title, contents, createdBy, timestamp } = CONTENTS;
+  const { title, contents, createdBy, hashtag, timestamp } = CONTENTS;
 
   return (
     <>
-      <div className="wrapped">
-        <div className="contents">
+      <div className='wrapped'>
+        <div className='contents'>
           <BoardCard
             title={title}
             contents={contents}
             createdBy={createdBy}
+            hashtag={hashtag}
             timestamp={timestamp}
             commentCount={commentList.length}
           />

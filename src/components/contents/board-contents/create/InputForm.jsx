@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 // import { useNavigate } from 'react-router-dom';
 import useKeyEscClose from "../../../hooks/useKeyEscClose";
 import ToastEditor from "./editor/ToastEditor";
 import Hashtag from "./Hashtag";
 import "./CreateStyle.css";
+import { useHashtagContext } from "../../../../context/HashtagContext";
 // import ToastEditor from './editor/ToastEditor';
 
 // 현재 시간 구하는 함수
@@ -24,7 +25,9 @@ const time = () => {
 const InputForm = ({ isModal, setIsModal }) => {
   const inputRef = useRef();
   const editorRef = useRef();
+  const { hashtagContextList } = useHashtagContext();
   console.log("InputForm 렌더링");
+  console.log("hastagContext", hashtagContextList);
 
   let temp_boardList = JSON.parse(localStorage.getItem("boardList")) || [];
 
@@ -51,6 +54,7 @@ const InputForm = ({ isModal, setIsModal }) => {
     title: "",
     createdBy: "",
     contents: "",
+    hashtag: "",
     timestamp: "",
   });
   console.log(board.contents, board.title, "REACT 어렵다");
@@ -142,7 +146,8 @@ const InputForm = ({ isModal, setIsModal }) => {
         temp_boardList.length > 0
           ? temp_boardList[temp_boardList.length - 1]["idx"] + 1
           : 0, // boardList의 마지막 항목의 인덱스 + 1
-      timestamp: time(),
+      hashtag: hashtagContextList,
+      timestamp: time(), // 사실은 서버에서 주면 되서 필요 없는 함수
     };
 
     // let temp_boardList = JSON.parse(localStorage.getItem('boardList')) || [];
