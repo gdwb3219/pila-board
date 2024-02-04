@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 // import { useNavigate } from 'react-router-dom';
-import useKeyEscClose from "../../../hooks/useKeyEscClose";
+import useKeyEscClose from "../../../../hooks/useKeyEscClose";
 import ToastEditor from "./editor/ToastEditor";
 import Hashtag from "./Hashtag";
 import "./CreateStyle.css";
 import { useHashtagContext } from "../../../../context/HashtagContext";
+import ClosePopUp from "./ClosePopUp";
 // import ToastEditor from './editor/ToastEditor';
 
 // 현재 시간 구하는 함수
@@ -47,6 +48,10 @@ const InputForm = ({ isModal, setIsModal }) => {
   // );
 
   console.log(temp_boardList, "BoardList");
+
+  // Close Modal 구현
+  const [isCloseModal, setIsCloseModal] = useState(false);
+  console.log(isCloseModal, "isClose?");
 
   // 초기값 board State 설정
   const [board, setBoard] = useState({
@@ -185,9 +190,11 @@ const InputForm = ({ isModal, setIsModal }) => {
     if (board.contents === "" && board.title === "" && board.createdBy === "") {
       setIsModal(false);
     } else {
-      console.log("값이 있는데 끌꺼야?");
+      setIsCloseModal(true);
     }
   };
+
+  // usePopUp(1, console.log("yes"), console.log("no"));
 
   // ESC로 데이터 존재 여부 판단해서 Modal Popup 뜨게 하기 TEST 중
   const HookTEST = () => {
@@ -244,6 +251,9 @@ const InputForm = ({ isModal, setIsModal }) => {
           </div>
         </div>
       </div>
+      {isCloseModal && (
+        <ClosePopUp close={setIsModal} continueModal={setIsCloseModal} />
+      )}
     </>
   );
 };

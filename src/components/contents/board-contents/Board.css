@@ -14,7 +14,7 @@
 }
 
 .article {
-  background-color: #fff;
+  /* background-color: #fff; */
   text-decoration: none;
   height: 24px;
   padding: 10px 0px 10px 0px;
@@ -29,7 +29,7 @@
 .link {
   text-decoration: none;
   color: inherit;
-  background-color: white;
+  /* background-color: #f6f6f8; */
   font-size: 20px;
 }
 .link:hover {
@@ -48,7 +48,7 @@
 }
 
 .sub-button a {
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   flex-direction: row;
 }
@@ -64,6 +64,6 @@
 }
 
 #create-button:hover {
-  background-color: white;
-  color: black;
+  background-color: #005000;
+  color: white;
 }

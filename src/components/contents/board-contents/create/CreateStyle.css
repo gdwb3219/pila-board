@@ -112,7 +112,7 @@
 }
 .title.ta::placeholder {
   color: #b1b1b1;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 500;
 }
 
@@ -175,7 +175,7 @@
 }
 
 .ta-hashtag {
-  background-color: #edf8ed;
+  background-color: white;
   font-size: 15px;
   width: 100%;
   box-sizing: border-box;
@@ -184,6 +184,10 @@
   /* height: 40px; */
   padding: 10px 0 10px 10px;
   border-radius: 10px;
+}
+
+.ta-hashtag::placeholder {
+  color: #b1b1b1;
 }
 
 .ta-hashtag:focus {
@@ -237,4 +241,57 @@
 
 .dnanfwjd path {
   fill: rgb(255, 255, 255);
+}
+
+/* Close Modal PopUp */
+
+.pop-up.container {
+  height: 150px;
+  width: 300px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 30px #ddd;
+  border: solid 1px #ccc;
+}
+
+#closeQ {
+  position: relative;
+  top: 20px;
+  font-size: 20px;
+  display: inline-block;
+  left: 20px;
+}
+
+.button-container.close {
+  width: 100%;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+}
+
+.select {
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+}
+
+.select:first-child {
+  border: 0;
+  background-color: transparent;
+}
+.select:first-child:hover {
+  background-color: #005000;
+  color: white;
+}
+.select:nth-child(2) {
+  border: 0;
+  background-color: #f0f0f0;
+}
+
+.select:nth-child(2):hover {
+  background-color: #005000;
+  color: white;
 }
