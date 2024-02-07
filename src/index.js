@@ -9,6 +9,9 @@ import InputForm from "./components/contents/board-contents/InputForm";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navigation/Navbar";
 import SignUp from "./components/contents/members/SignUp";
+// import OAuth from "./components/contents/members/OAuth";
+import KakaoLogin from "./components/contents/members/KakaoLogin";
+import KakaoLogout from "./components/contents/members/KakaoLogout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +24,8 @@ root.render(
       <Route path='members' element={<Members />} />
       <Route path='/board/:idx' element={<BoardDetail />} />
       <Route path='/write' element={<InputForm />} />
-      <Route path='/signup' element={<SignUp />} />
+      <Route path="/auth/kakaoc/allback" element={<KakaoLogin />} />
+      <Route path="/logout" element={<KakaoLogout />} />
     </Routes>
     <Footer />
   </BrowserRouter>

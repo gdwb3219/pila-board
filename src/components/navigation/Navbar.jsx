@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import KakaoLogin from "/workspaces/pila-board/src/components/contents/members/KakaoLogin.jsx"
+import KakaoLogout from "/workspaces/pila-board/src/components/contents/members/KakaoLogout.jsx"
 
 function Navbar() {
   return (
@@ -42,9 +44,10 @@ function Navbar() {
               </NavLink>
             </li>
             <li className='mem-item'>
-              <NavLink className='Button' to='/members'>
-                로그인
-              </NavLink>
+                <KakaoLogin/>
+            </li>
+            <li className='mem-item'>
+                <KakaoLogout/>
             </li>
           </ul>
           </div>
