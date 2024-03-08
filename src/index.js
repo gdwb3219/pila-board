@@ -8,6 +8,7 @@ import BoardDetail from "./components/contents/board-contents/BoardDetail";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navigation/Navbar";
 import InputForm from "./components/contents/board-contents/create/InputForm";
+import ServerBoard from "./components/contents/board-contents/server_list/ServerBoard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path='members' element={<Members />} />
         <Route path='/board/:idx' element={<BoardDetail />} />
         <Route path='/write' element={<InputForm />} />
+        <Route path='/serverboard' element={<ServerBoard />} />
       </Routes>
     </div>
 

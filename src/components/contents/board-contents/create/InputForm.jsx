@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 // import { useNavigate } from 'react-router-dom';
-import useKeyEscClose from '../../../../hooks/useKeyEscClose';
-import ToastEditor from './editor/ToastEditor';
-import Hashtag from './Hashtag';
-import './CreateStyle.css';
-import { useHashtagContext } from '../../../../context/HashtagContext';
-import ClosePopUp from './ClosePopUp';
+import useKeyEscClose from "../../../../hooks/useKeyEscClose";
+import ToastEditor from "./editor/ToastEditor";
+import Hashtag from "./Hashtag";
+import "./CreateStyle.css";
+import { useHashtagContext } from "../../../../context/HashtagContext";
+import ClosePopUp from "./ClosePopUp";
 // import ToastEditor from './editor/ToastEditor';
 
 // 현재 시간 구하는 함수
@@ -27,10 +27,10 @@ const InputForm = ({ isModal, setIsModal }) => {
   const inputRef = useRef();
   const editorRef = useRef();
   const { hashtagContextList } = useHashtagContext();
-  console.log('InputForm 렌더링');
-  console.log('hastagContext', hashtagContextList);
+  console.log("InputForm 렌더링");
+  console.log("hastagContext", JSON.stringify(hashtagContextList));
 
-  let temp_boardList = JSON.parse(localStorage.getItem('boardList')) || [];
+  let temp_boardList = JSON.parse(localStorage.getItem("boardList")) || [];
 
   // const navigate = useNavigate();
   // 처음 LocalStorage에 있는 boradList로 Parsing 하여 객체 리스트 불러오기
@@ -47,29 +47,31 @@ const InputForm = ({ isModal, setIsModal }) => {
   //   JSON.parse(localStorage.getItem('boardList')) || []
   // );
 
-  console.log(temp_boardList, 'BoardList');
+  console.log(temp_boardList, "BoardList");
 
   // Close Modal 구현
   const [isCloseModal, setIsCloseModal] = useState(false);
-  console.log(isCloseModal, 'isClose?');
+  console.log(isCloseModal, "isClose?");
 
   // 초기값 board State 설정
   const [board, setBoard] = useState({
-    idx: '', //boardList.length > 0 ? boardList[boardList.length - 1]['idx'] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
-    title: '',
-    createdBy: '',
-    contents: '',
-    hashtag: '',
-    timestamp: '',
+    idx: "", //boardList.length > 0 ? boardList[boardList.length - 1]['idx'] + 1 : 0, // boardList의 마지막 항목의 인덱스 + 1
+    title: "",
+    createdBy: "",
+    contents: "",
+    hashtag: "",
+    timestamp: "",
   });
-  console.log(board.contents, board.title, 'REACT 어렵다');
+  console.log(board.contents, board.title, "REACT 어렵다");
 
   // server 통신 test
   const [post, setPost] = useState({
-    user: 1,
-    category: 1,
-    title: 'TEST',
-    body: '',
+    key: "꾸짖",
+    title: "1",
+    contents: "꾸짖을",
+    // created_by: "갈!",
+    created_by: "1",
+    // category: "꾸짖!",
     // date_time_posted: "",
     // id: 4,
     // upvotes: 3,
@@ -118,8 +120,8 @@ const InputForm = ({ isModal, setIsModal }) => {
   const onToastChange = () => {
     const data = editorRef.current.getInstance().getMarkdown();
     const data2 = editorRef.current.getInstance().getHTML();
-    console.log(data, 'editor');
-    console.log(data2, 'HTML');
+    console.log(data, "editor");
+    console.log(data2, "HTML");
     setBoard({
       ...board,
       contents: data,
@@ -135,8 +137,22 @@ const InputForm = ({ isModal, setIsModal }) => {
 
   const saveBoard = async () => {
     // 아무것도 없으면 입력 안되게
-    if (board.contents === '' && board.title === '' && board.createdBy === '') {
-      console.log('뭐라도 입력 해!');
+    if (board.contents === "" && board.title === "" && board.createdBy === "") {
+      console.log("뭐라도 입력 해!");
+
+      // django Server Data Post TEST
+      fetch("http://localhost:8000/api/boardlist/", {
+        method: "POST",
+        headers: {
+          //데이터 타입 지정
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(board),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res, "Response");
+        });
 
       // 아니면 입력 되게
     } else {
@@ -155,46 +171,47 @@ const InputForm = ({ isModal, setIsModal }) => {
         // idx: createUUID,
         idx:
           temp_boardList.length > 0
-            ? temp_boardList[temp_boardList.length - 1]['idx'] + 1
+            ? temp_boardList[temp_boardList.length - 1]["idx"] + 1
             : 0, // boardList의 마지막 항목의 인덱스 + 1
-        hashtag: hashtagContextList,
-        timestamp: time(), // 사실은 서버에서 주면 되서 필요 없는 함수
+        hashtag: JSON.stringify(hashtagContextList),
+        // timestamp: time(), // 사실은 서버에서 주면 되서 필요 없는 함수
       };
+
+      console.log(JSON.stringify(submitBoardList), "JSON");
+
+      fetch("http://localhost:8000/api/boardlist/", {
+        method: "POST",
+        headers: {
+          //데이터 타입 지정`
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(submitBoardList),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res, "Response");
+        });
 
       // let temp_boardList = JSON.parse(localStorage.getItem('boardList')) || [];
       temp_boardList.push(submitBoardList);
-      console.log(temp_boardList, 'Update');
+      console.log(temp_boardList, "Update");
       // setBoardList(temp_boardList);
 
-      localStorage.setItem('boardList', JSON.stringify(temp_boardList));
-
-      // django Server Data Post TEST
-      // fetch("http://192.168.121.143:8000/api/posts/", {
-      //   method: "POST",
-      //   headers: {
-      //     //데이터 타입 지정
-      //     "Content-Type": "application/json; charset=utf-8",
-      //   },
-      //   body: JSON.stringify(post),
-      // })
-      //   .then((res) => res.json())
-      //   .then((res) => {
-      //     console.log(res, "Response");
-      //   });
+      localStorage.setItem("boardList", JSON.stringify(temp_boardList));
 
       // setState로 BoardList가 바뀌는 것을 예약함. setBoardList로 바로 state가 바뀌지 않음.
-      alert('등록되었습니다.');
+      alert("등록되었습니다.");
       setIsModal(false);
     }
   };
 
   const cond =
-    board.contents === '' && board.title === '' && board.createdBy === '';
-  console.log(cond, 'condition');
+    board.contents === "" && board.title === "" && board.createdBy === "";
+  console.log(cond, "condition");
 
   // Modal Close를 위한 close함수 설정
   const closeModal = () => {
-    if (board.contents === '' && board.title === '' && board.createdBy === '') {
+    if (board.contents === "" && board.title === "" && board.createdBy === "") {
       setIsModal(false);
     } else {
       setIsCloseModal(true);
@@ -207,9 +224,9 @@ const InputForm = ({ isModal, setIsModal }) => {
   const HookTEST = () => {
     console.log(
       cond,
-      'Hook TEST Console. 발동',
-      '왜 내부 boolean은 안바뀌지',
-      board.contents === '' && board.title === '' && board.createdBy === ''
+      "Hook TEST Console. 발동",
+      "왜 내부 boolean은 안바뀌지",
+      board.contents === "" && board.title === "" && board.createdBy === ""
     );
   };
   // Modal Close 하는 Custom Hook
@@ -219,31 +236,31 @@ const InputForm = ({ isModal, setIsModal }) => {
 
   return (
     <>
-      <div id="form-background"></div>
-      <div id="form-container">
-        <div className="form-wrapper">
-          <div id="create-header">
+      <div id='form-background'></div>
+      <div id='form-container'>
+        <div className='form-wrapper'>
+          <div id='create-header'>
             <div>글쓰기</div>
-            <button className="X-button" onClick={closeModal}></button>
+            <button className='X-button' onClick={closeModal}></button>
           </div>
-          <div className="title">
+          <div className='title'>
             <input
-              className="title ta"
-              placeholder="제목을 입력하세요"
-              type="text"
-              name="title"
+              className='title ta'
+              placeholder='제목을 입력하세요'
+              type='text'
+              name='title'
               value={title}
               onChange={onChange}
               ref={inputRef}
             />
           </div>
           <br />
-          <div className="createdBy">
+          <div className='createdBy'>
             <input
-              className="createdBy ta"
-              placeholder="작성자 ID를 입력하세요"
-              type="text"
-              name="createdBy"
+              className='createdBy ta'
+              placeholder='작성자 ID를 입력하세요'
+              type='text'
+              name='createdBy'
               value={createdBy}
               onChange={onChange}
             />
@@ -251,8 +268,8 @@ const InputForm = ({ isModal, setIsModal }) => {
           <ToastEditor editorRef={editorRef} onToastChange={onToastChange} />
           <Hashtag />
           <br />
-          <div id="save-container">
-            <button className="button-form" onClick={saveBoard}>
+          <div id='save-container'>
+            <button className='button-form' onClick={saveBoard}>
               등록
             </button>
           </div>

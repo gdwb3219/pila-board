@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  console.log("Navbar");
   return (
     <>
       <div className='Navbar-Area'>
@@ -24,8 +25,8 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink className='Button' to='/members'>
-                  버튼1
+                <NavLink className='Button' to='/serverBoard'>
+                  Server
                 </NavLink>
               </li>
               <li className='nav-item'>
