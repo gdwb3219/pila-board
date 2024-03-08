@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import UserViewSet, CategoryViewSet, PostViewSet, CommentViewSet, BoardTestTableViewSet
+from .views import UserViewSet, CategoryViewSet, PostViewSet, CommentViewSet, BoardTestTableViewSet, BoardListViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -9,6 +9,7 @@ router.register(r'users', UserViewSet)
 router.register(r'categories', CategoryViewSet)
 router.register(r'posts', PostViewSet)
 router.register(r'comments', CommentViewSet)
+router.register(r'boardlist', BoardListViewSet)
 # router.register(r'board_test', BoardTestTableViewSet)
 
 

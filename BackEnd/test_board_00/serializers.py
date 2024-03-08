@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import board_test_table, User, Category, Post, Comment
+from .models import board_test_table, User, Category, Post, Comment, BoardList
 
 class BoardTestTableSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,4 +24,9 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
+        fields = '__all__'
+
+class BoardListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BoardList
         fields = '__all__'

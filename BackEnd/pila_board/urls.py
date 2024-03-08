@@ -22,6 +22,7 @@ from test_board_00 import urls
 from django.views.generic import TemplateView
 
 urlpatterns = [
+    path('', include(urls)),  # Include the app's urls here
     #path('admin/', admin.site.urls),
     path('api/', include(urls)),  # Include the app's urls here
     #path('', index, name='index'),

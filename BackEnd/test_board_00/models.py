@@ -35,3 +35,11 @@ class board_test_table(models.Model):
     contents = models.TextField()
     created_by = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+# BoardList
+class BoardList(models.Model):
+    contents = models.TextField()
+    createdBy = models.CharField(max_length=10)
+    hashtag = models.TextField(null=True) # HashTag List 받아서 디코딩
+    title = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now=True)
