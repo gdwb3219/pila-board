@@ -4,7 +4,7 @@ import { HashtagContextProvider } from "../../../context/HashtagContext";
 import axios from "axios";
 import ServerList from "./server_list/ServerList";
 
-function BoardContent() {
+function BoardContent({ prep }) {
   const handleClick1 = async () => {
     // fetch("http://localhost:8000/boardlist/1", {
     //   // method: "GET",
@@ -44,7 +44,7 @@ function BoardContent() {
           <div className='content-container'>
             <div className='Component-container Board'>
               <div className='Board-name'>호호요가 대항마 게시판</div>
-              <Board />
+              {prep}
             </div>
             <div className='Component-container Chart'>
               <div className='Board-name'>another Content</div>

@@ -16,7 +16,6 @@ function ServerList() {
     };
 
     fetchList();
-    console.log("Fetch");
   }, []);
   return (
     <>

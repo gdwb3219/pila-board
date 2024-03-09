@@ -18,7 +18,7 @@ function Board() {
   //   JSON.parse(localStorage.getItem('boardList')) || []
   // );
   const boardList = JSON.parse(localStorage.getItem("boardList")) || [];
-
+  console.log(boardList, "LocalBoardList");
   // console.log('Board 렌더링', boardList);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ function Board() {
             ))}
         </ul>
         <div>
-          <PaginationBox className='PaginationBox'>
+          {/* <PaginationBox className='PaginationBox'>
             <Pagination
               activePage={page}
               itemsCountPerPage={items}
@@ -95,7 +95,7 @@ function Board() {
               pageRangeDisplayed={5}
               onChange={handlePageChange}
             ></Pagination>
-          </PaginationBox>
+          </PaginationBox> */}
         </div>
         <div>
           <button id='create-button' onClick={moveToWrite}>
