@@ -58,7 +58,7 @@ function ServerBoard() {
             .slice(items * (page - 1), items * (page - 1) + items)
             .map((board) => (
               <li className='article' key={board.id}>
-                <Link className='link' to={`/board/${board.id}`}>
+                <Link className='link' to={`/serverboard/${board.id}`}>
                   {board.title}
                 </Link>
                 <div className='sub-button'>

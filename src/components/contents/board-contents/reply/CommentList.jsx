@@ -38,7 +38,7 @@ function CommentList({ idx }) {
           return (
             <>
               <hr />
-              <Comment v={v} k={v.comment_id} />
+              <Comment v={v} key={v.comment_id} />
             </>
           );
         })}

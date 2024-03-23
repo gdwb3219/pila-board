@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BoardCard from "./BoardCard";
 import { useParams } from "react-router-dom";
 // import boardList from "../../../mockdata.json";
@@ -15,9 +15,9 @@ import axios from "axios";
 // Footer
 // ----------------------------------------
 
-function BoardDetail() {
+function ServerBoardDetail() {
   const { idx } = useParams();
-  // const [loading, setLoading] = useState(false);
+  // const [instance, setInstance] = useState({});
 
   const INITIAL_CONTENT = JSON.parse(localStorage.getItem("boardList"));
   const CONTENTS = INITIAL_CONTENT.filter(
@@ -26,13 +26,16 @@ function BoardDetail() {
 
   // 단일 인스턴스
 
-  const handleClick2 = async () => {
-    await axios
-      .get("http://localhost:8000/api/boardlist/6/")
-      .then((res) => console.log(res));
-    // .then((data) => console.log(data));
-    console.log("실행 완료");
-  };
+  // useEffect(() => {
+  //   fetch(`http://localhost:8000/api/boardlist/${idx}/`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setInstance(res);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching post detail:", error);
+  //     });
+  // }, []);
 
   const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
 
@@ -40,20 +43,13 @@ function BoardDetail() {
     INITIAL_localDB.filter((comments) => comments.reply_list[0] === idx) || [];
   const [commentList, setCommentList] = useState(INITIALLIST);
 
-  const { title, contents, createdBy, hashtag, timestamp } = CONTENTS;
+  // const { title, contents, createdBy, hashtag, timestamp } = instance;
 
   return (
     <>
       <div className='wrapped'>
         <div className='contents'>
-          <BoardCard
-            title={title}
-            contents={contents}
-            createdBy={createdBy}
-            hashtag={hashtag}
-            timestamp={timestamp}
-            commentCount={commentList.length}
-          />
+          <BoardCard commentCount={commentList.length} />
           <CommentContextProvider>
             <Reply idx={idx} />
           </CommentContextProvider>
@@ -63,4 +59,4 @@ function BoardDetail() {
   );
 }
 
-export default BoardDetail;
+export default ServerBoardDetail;
