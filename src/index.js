@@ -10,7 +10,7 @@ import Navbar from "./components/navigation/Navbar";
 import InputForm from "./components/contents/board-contents/create/InputForm";
 import ServerBoard from "./components/contents/board-contents/server_list/ServerBoard";
 import Board from "./components/contents/board-contents/Board";
-import ServerBoardDetail from "./components/contents/board-contents/ServerBoardDetail";
+import ServerBoardDetail from "./components/contents/board-contents/server_list/ServerBoardDetail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

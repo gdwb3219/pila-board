@@ -1,0 +1,57 @@
+.HeaderTitle {
+  color: blue;
+  border-color: black;
+  border: 1px solid;
+}
+
+.textTitle {
+  list-style: none;
+  border: 1px solid;
+  border-color: black;
+  height: 100px;
+}
+
+.boardcard-title {
+  font-size: 48px;
+}
+.boardcard-created {
+  font-size: 12px;
+  margin-left: 20px;
+}
+.boardcard-content {
+  position: relative;
+  font-size: 16px;
+  height: 300px;
+}
+.boardcard-timestamp {
+  font-size: 14px;
+}
+
+.reply-count {
+  color: #444;
+  font-size: 14px;
+  margin-left: auto;
+}
+
+.BoardCard-component-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.BoardCard-component-container p {
+  padding: 5px;
+}
+
+.sub-title-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.viewer-container {
+  min-height: 300px;
+}
+
+.viewer {
+  background-color: #f6f6f8;
+}

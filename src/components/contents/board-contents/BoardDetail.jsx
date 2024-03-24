@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import BoardCard from "./BoardCard";
 import { useParams } from "react-router-dom";
 // import boardList from "../../../mockdata.json";
 import Reply from "./reply/Reply";
 import "./BoardDetail.css";
 import { CommentContextProvider } from "../../../context/CommentContext";
-import axios from "axios";
+import LocalBoardCard from "./LocalBoardCard";
 
 // ----------------------------------------
 // 게시판 글 목록 클릭해서 세부 게시글로 이동
@@ -26,13 +25,6 @@ function BoardDetail() {
 
   // 단일 인스턴스
 
-  const handleClick2 = async () => {
-    await axios
-      .get("http://localhost:8000/api/boardlist/6/")
-      .then((res) => console.log(res));
-    // .then((data) => console.log(data));
-    console.log("실행 완료");
-  };
 
   const INITIAL_localDB = JSON.parse(localStorage.getItem("commentList")) || [];
 
@@ -42,11 +34,12 @@ function BoardDetail() {
 
   const { title, contents, createdBy, hashtag, timestamp } = CONTENTS;
 
+  console.log(CONTENTS)
   return (
     <>
       <div className='wrapped'>
         <div className='contents'>
-          <BoardCard
+          <LocalBoardCard
             title={title}
             contents={contents}
             createdBy={createdBy}

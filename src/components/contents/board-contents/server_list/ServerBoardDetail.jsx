@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import BoardCard from "./BoardCard";
 import { useParams } from "react-router-dom";
 // import boardList from "../../../mockdata.json";
-import Reply from "./reply/Reply";
+import Reply from "../reply/Reply";
 import "./BoardDetail.css";
-import { CommentContextProvider } from "../../../context/CommentContext";
 import axios from "axios";
+import ServerBoardCard from "./ServerBoardCard";
+import { CommentContextProvider } from "../../../../context/CommentContext";
 
 // ----------------------------------------
 // 게시판 글 목록 클릭해서 세부 게시글로 이동
@@ -49,7 +49,7 @@ function ServerBoardDetail() {
     <>
       <div className='wrapped'>
         <div className='contents'>
-          <BoardCard commentCount={commentList.length} />
+          <ServerBoardCard commentCount={commentList.length} />
           <CommentContextProvider>
             <Reply idx={idx} />
           </CommentContextProvider>
